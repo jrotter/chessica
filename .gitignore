@@ -1,0 +1,6 @@
+chessica
+./backup
+./games/*
+./obj/*
+./output/*
+./profiling/*
