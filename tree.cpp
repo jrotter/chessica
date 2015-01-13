@@ -47,7 +47,7 @@ int ResetTree::CountFreeList()
   ResetTree *Node;
 
   Count = 0;
-  for (i=0;i<=MAX_THREADS;i++)
+  for (i=0;i<MAX_THREADS;i++)
   {
     Node = FreeList[i];
     while (Node)
