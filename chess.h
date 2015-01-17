@@ -4,6 +4,7 @@
 #include <iostream>
 #include <pthread.h>
 #include <unistd.h>
+#include "logger.h"
 #include "constants.h"
 #include "lock.h"
 #include "reset.h"
@@ -55,6 +56,7 @@ typedef int (Game::*SearchRoutineFunction)(int ThreadID);
 extern Lock IOLock;
 
 extern Game MyGame;	//chess.cpp
+extern Logger Log;	//logger.cpp
 extern FILE *logfile;
 extern int HashMultiples[64];
 extern signed char Points[2][7];	//score.cpp

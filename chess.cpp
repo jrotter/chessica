@@ -1,14 +1,16 @@
 #include "chess.h"
 
-#define TESTMODE
+//#define TESTMODE
 
 Game MyGame;
+Logger Log;
 
 int main()
 {
   char temp;
   ResetTree & Root = *new ResetTree;
-
+  
+  Log.Open();
   InitKingStars();
   InitAllAttacks();
   Root.InitCheckFunctionRouters();
@@ -23,5 +25,6 @@ int main()
   MyGame.XboardCommandInterpreter();
 #endif
 
+  Log.Close();
   return (0);
 }
