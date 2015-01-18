@@ -18,7 +18,7 @@ void Reset::InitMyChild(Reset * Child)
 
   //memcpy(Child->Board,Board,137);
 
-  memcpy((void *) &(Child->bAll),(void *) &(bAll),76);
+  memcpy((void *) &(Child->bAll),(void *) &(bAll),80);
   //Child->bAll = bAll;			//8 bytes
   //Child->bWhite = bWhite;		//8 bytes
   //Child->bBlack = bBlack;		//8 bytes
@@ -29,6 +29,7 @@ void Reset::InitMyChild(Reset * Child)
   //Child->bQueens = bQueens;		//8 bytes
   //Child->bKings = bKings;		//8 bytes
   //Child->Material = Material;		//1 byte
+  //Child->MovesSinceCapture = MovesSinceCapture;	//1 byte
   //Child->WhiteKingSquare = WhiteKingSquare;	//1 byte
   //Child->BlackKingSquare = BlackKingSquare;	//1 byte
   //Childd bits				//1 byte
@@ -141,7 +142,7 @@ int Reset::ResetMatches(Reset *Candidate)
 //
 void Reset::CopyReset(Reset *Target)
 {
-  memcpy(&(Target->bAll),&(bAll),76+32+35);
+  memcpy(&(Target->bAll),&(bAll),80+32+36);
 }
 
 

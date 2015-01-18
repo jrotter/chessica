@@ -26,6 +26,7 @@ void Reset::bInitToFEN(const char *FEN)
   BlackCastleK = 0;
   Material = 0;
   EPCapture = 1;  //This will force Safety checks to work on FEN-initialized resets
+  MovesSinceCapture = 0;
   i = 0;
 
   while (inchar = FEN[i++])
@@ -195,6 +196,26 @@ void Reset::bInitToFEN(const char *FEN)
             param++;
             break;
           case '-':
+            param++;
+            break;
+        }
+        break;
+      case 4:
+        switch (inchar)
+        {
+          case '0':
+          case '1':
+          case '2':
+          case '3':
+          case '4':
+          case '5':
+          case '6':
+          case '7':
+          case '8':
+          case '9':
+            MovesSinceCapture = (unsigned char) ((MovesSinceCapture * 10) + (inchar - '0'));
+            break;
+          case ' ':
             param++;
             break;
         }

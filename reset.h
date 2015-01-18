@@ -21,14 +21,15 @@ protected:
   unsigned long long int bQueens;   // 8 bytes ( 64)
   unsigned long long int bKings;    // 8 bytes ( 72)
   signed char Material;             // 1 byte  ( 73)
-  unsigned char WhiteKingSquare;    // 1 byte  ( 74)
-  unsigned char BlackKingSquare;    // 1 byte  ( 75)
-                                    // 1 byte  ( 76) below
+  unsigned char MovesSinceCapture;  // 1 byte  ( 74)
+  unsigned char WhiteKingSquare;    // 1 byte  ( 75)
+  unsigned char BlackKingSquare;    // 1 byte  ( 76)
+                                    // 4 bytes ( 80) below
   unsigned WhiteCastleQ :1;     // white can still castle when on
   unsigned WhiteCastleK :1;     // white can still castle when on
   unsigned BlackCastleQ :1;     // black can still castle when on
   unsigned BlackCastleK :1;     // black can still castle when on
-  unsigned Reserved01 :4; 
+  unsigned Reserved01 :28; 
 
   ////////////////////////////////////
   //Fields cleared in a new Child
@@ -63,10 +64,9 @@ protected:
   signed char TimesSeen;            // 1 byte  ( 31)  
   unsigned char From;               // 1 byte  ( 32)
   unsigned char To;                 // 1 byte  ( 33)
-  unsigned char MovesSinceCapture;  // 1 byte  ( 34)
-                                    // 1 byte  ( 35)
+                                    // 3 bytes ( 36)
   unsigned MustCheckSafety:1;	//Force king safety check for this reset
-  unsigned reserved03:7;	//Reserved
+  unsigned reserved03:23;	//Reserved
 
 /*************************************************************/
 /*************************************************************/
@@ -82,9 +82,12 @@ private:
   //void LogPrintSquare(signed char PieceIndex);
   void PrintSquareToAddress(unsigned long long int Mask, char * Addr);
 
-  int AddNextWhiteMove(Reset *Target, long long unsigned int *PieceBeingMoved); //moves.cpp
-  int AddNextBlackMove(Reset *Target, long long unsigned int *PieceBeingMoved); //moves.cpp
+  //moves.cpp
+  int AddNextWhiteMove(Reset *Target, long long unsigned int *PieceBeingMoved);
+  int AddNextBlackMove(Reset *Target, long long unsigned int *PieceBeingMoved);
+  unsigned long long int UpdateMoveData(int Target);
 
+  //pawn.cpp
   int GenerateNextWhitePawnMove(Reset *Child);	
   int GenerateNextBlackPawnMove(Reset *Child);
   int GenerateNextWhitePawnPromotion(Reset * Child, unsigned long long int Target);	
@@ -92,16 +95,19 @@ private:
   int GenerateNextWhitePawnCapture(Reset *Child);	
   int GenerateNextBlackPawnCapture(Reset *Child);
 
+  //knight.cpp
   int GenerateNextWhiteKnightMove(Reset *Child);
   int GenerateNextBlackKnightMove(Reset *Child);
   int GenerateNextWhiteKnightCapture(Reset *Child);
   int GenerateNextBlackKnightCapture(Reset *Child);
 
+  //bishop.cpp
   int GenerateNextWhiteBishopMove(Reset *Child);
   int GenerateNextBlackBishopMove(Reset *Child);
   int GenerateNextWhiteBishopCapture(Reset *Child);
   int GenerateNextBlackBishopCapture(Reset *Child);
 
+  //rook.cpp
   int AddNextWhiteRookMove(Reset *MyChild);
   int AddNextBlackRookMove(Reset *MyChild);
   int GenerateNextWhiteRookMove(Reset *Child);
@@ -109,11 +115,13 @@ private:
   int GenerateNextWhiteRookCapture(Reset *Child);
   int GenerateNextBlackRookCapture(Reset *Child);
 
+  //queen.cpp
   int GenerateNextWhiteQueenMove(Reset *Child);
   int GenerateNextBlackQueenMove(Reset *Child);
   int GenerateNextWhiteQueenCapture(Reset *Child);
   int GenerateNextBlackQueenCapture(Reset *Child);
 
+  //king.cpp
   int AddNextWhiteKingMove(Reset *MyChild, unsigned char To);
   int AddNextBlackKingMove(Reset *MyChild, unsigned char To);
   int GenerateNextWhiteKingMove(Reset *Child);
@@ -121,63 +129,66 @@ private:
   int GenerateNextWhiteKingCapture(Reset *Child);
   int GenerateNextBlackKingCapture(Reset *Child);
 
-  void CaptureProcessing(unsigned long long int To);	//capture.cpp
-  int BlackIsSafe(unsigned long long int Squares);	//safe.cpp
-  int WhiteIsSafe(unsigned long long int Squares);	//safe.cpp
+  //capture.cpp
+  void CaptureProcessing(unsigned long long int To);
 
-  int WhiteRevealedCheckRouter(signed char Square);	//safe.cpp
-  int BlackRevealedCheckRouter(signed char Square);	//safe.cpp
-  int WhiteDirectCheckRouter(signed char Square);	//safe.cpp
-  int BlackDirectCheckRouter(signed char Square);	//safe.cpp
+  //safe.cpp
+  int BlackIsSafe(unsigned long long int Squares);
+  int WhiteIsSafe(unsigned long long int Squares);
 
-  int WhiteIsSafeFromRevealedCheckUp();			//safe.cpp
-  int WhiteIsSafeFromRevealedCheckUpRight();		//safe.cpp
-  int WhiteIsSafeFromRevealedCheckRight();		//safe.cpp
-  int WhiteIsSafeFromRevealedCheckDownRight();		//safe.cpp
-  int WhiteIsSafeFromRevealedCheckDown();		//safe.cpp
-  int WhiteIsSafeFromRevealedCheckDownLeft();		//safe.cpp
-  int WhiteIsSafeFromRevealedCheckLeft();		//safe.cpp
-  int WhiteIsSafeFromRevealedCheckUpLeft();		//safe.cpp
-  int SafeFromCheck();			//safe.cpp
+  int WhiteRevealedCheckRouter(signed char Square);
+  int BlackRevealedCheckRouter(signed char Square);
+  int WhiteDirectCheckRouter(signed char Square);
+  int BlackDirectCheckRouter(signed char Square);
 
-  int BlackIsSafeFromRevealedCheckUp();			//safe.cpp
-  int BlackIsSafeFromRevealedCheckUpRight();		//safe.cpp
-  int BlackIsSafeFromRevealedCheckRight();		//safe.cpp
-  int BlackIsSafeFromRevealedCheckDownRight();		//safe.cpp
-  int BlackIsSafeFromRevealedCheckDown();		//safe.cpp
-  int BlackIsSafeFromRevealedCheckDownLeft();		//safe.cpp
-  int BlackIsSafeFromRevealedCheckLeft();		//safe.cpp
-  int BlackIsSafeFromRevealedCheckUpLeft();		//safe.cpp
+  int WhiteIsSafeFromRevealedCheckUp();
+  int WhiteIsSafeFromRevealedCheckUpRight();
+  int WhiteIsSafeFromRevealedCheckRight();
+  int WhiteIsSafeFromRevealedCheckDownRight();
+  int WhiteIsSafeFromRevealedCheckDown();
+  int WhiteIsSafeFromRevealedCheckDownLeft();
+  int WhiteIsSafeFromRevealedCheckLeft();
+  int WhiteIsSafeFromRevealedCheckUpLeft();
+  int SafeFromCheck();
 
-  int WhiteIsSafeFromCheckUp();			//safe.cpp
-  int WhiteIsSafeFromCheckUpRight();		//safe.cpp
-  int WhiteIsSafeFromCheckRight();		//safe.cpp
-  int WhiteIsSafeFromCheckDownRight();		//safe.cpp
-  int WhiteIsSafeFromCheckDown();		//safe.cpp
-  int WhiteIsSafeFromCheckDownLeft();		//safe.cpp
-  int WhiteIsSafeFromCheckLeft();		//safe.cpp
-  int WhiteIsSafeFromCheckUpLeft();		//safe.cpp
-  int WhiteIsSafeFromCheckByKnight();		//safe.cpp
+  int BlackIsSafeFromRevealedCheckUp();
+  int BlackIsSafeFromRevealedCheckUpRight();
+  int BlackIsSafeFromRevealedCheckRight();
+  int BlackIsSafeFromRevealedCheckDownRight();
+  int BlackIsSafeFromRevealedCheckDown();
+  int BlackIsSafeFromRevealedCheckDownLeft();
+  int BlackIsSafeFromRevealedCheckLeft();
+  int BlackIsSafeFromRevealedCheckUpLeft();
 
-  int BlackIsSafeFromCheckUp();			//safe.cpp
-  int BlackIsSafeFromCheckUpRight();		//safe.cpp
-  int BlackIsSafeFromCheckRight();		//safe.cpp
-  int BlackIsSafeFromCheckDownRight();		//safe.cpp
-  int BlackIsSafeFromCheckDown();		//safe.cpp
-  int BlackIsSafeFromCheckDownLeft();		//safe.cpp
-  int BlackIsSafeFromCheckLeft();		//safe.cpp
-  int BlackIsSafeFromCheckUpLeft();		//safe.cpp
-  int BlackIsSafeFromCheckByKnight();		//safe.cpp
+  int WhiteIsSafeFromCheckUp();
+  int WhiteIsSafeFromCheckUpRight();
+  int WhiteIsSafeFromCheckRight();
+  int WhiteIsSafeFromCheckDownRight();
+  int WhiteIsSafeFromCheckDown();
+  int WhiteIsSafeFromCheckDownLeft();
+  int WhiteIsSafeFromCheckLeft();
+  int WhiteIsSafeFromCheckUpLeft();
+  int WhiteIsSafeFromCheckByKnight();
 
-  int DidWhiteJustMoveIntoCheck();		//safe.cpp
-  int DidBlackJustMoveIntoCheck();		//safe.cpp
-  int DidWhiteMoveCauseBlackCheck();		//safe.cpp
-  int DidBlackMoveCauseWhiteCheck();		//safe.cpp
+  int BlackIsSafeFromCheckUp();
+  int BlackIsSafeFromCheckUpRight();
+  int BlackIsSafeFromCheckRight();
+  int BlackIsSafeFromCheckDownRight();
+  int BlackIsSafeFromCheckDown();
+  int BlackIsSafeFromCheckDownLeft();
+  int BlackIsSafeFromCheckLeft();
+  int BlackIsSafeFromCheckUpLeft();
+  int BlackIsSafeFromCheckByKnight();
 
-  void LookForWhiteKingInCheck();		//safe.cpp
-  void LookForBlackKingInCheck();		//safe.cpp
-  int ValidChild(Reset *MyChild);	//safe.cpp
-  unsigned long long int UpdateMoveData(int Target);	//moves.cpp
+  int DidWhiteJustMoveIntoCheck();
+  int DidBlackJustMoveIntoCheck();
+  int DidWhiteMoveCauseBlackCheck();
+  int DidBlackMoveCauseWhiteCheck();
+
+  void LookForWhiteKingInCheck();
+  void LookForBlackKingInCheck();
+  int ValidChild(Reset *MyChild);
+
 
 /*************************************************************/
 /*************************************************************/
@@ -185,31 +196,46 @@ private:
 /*************************************************************/
 /*************************************************************/
 public:
-  Reset();
-  void Free();			//reset.cpp
-  void bInitToFEN(const char *);	//test_FEN.cpp
-  void TestSafety();		//test_safe.cpp
-  //void LogPrintBoard();		//print.cpp
-  void PrintBoard();		//print.cpp
-  void PrintSmallBoard();		//print.cpp
-  void PrintReset();		//print.cpp
-  void PrintMoveHistory(int Ply);		//print.cpp
-  void InitMyChild(Reset *Child);	//reset.cpp 
-  void InitCheckFunctionRouters();		//safe.cpp
 
-  void InitializeMoveGeneration();	//moves.cpp
-  int NoMovesGenerated();		//moves.cpp
-  int GenerateNextMove(Reset *Target);	//moves.cpp
-  int GenerateNextCapture(Reset *Target);	//moves.cpp
-  void TestSafety(int Color, unsigned long long int SafeSquares);//test_safe.cpp
-  int ScoreResetMaterialOnly();	//score.cpp
-  int GameNotOver();			//reset.cpp
-  int WhiteToMove();			//reset.cpp
-  int FullHashesMatch(Reset *Candidate);	//reset.cpp
-  int ChildrenMatch(Reset *Candidate);	//reset.cpp
-  int ResetMatches(Reset *Candidate);	//reset.cpp
-  void GetAlgebraicNotation(Reset *Parent, char Text[]);	//io.cpp
-  void CopyReset(Reset *Target);	//reset.cpp
+  //reset.cpp
+  Reset();
+  void Free();
+  void InitMyChild(Reset *Child);
+  int GameNotOver();
+  int WhiteToMove();
+  int FullHashesMatch(Reset *Candidate);
+  int ChildrenMatch(Reset *Candidate);
+  int ResetMatches(Reset *Candidate);
+  void CopyReset(Reset *Target);
+
+  //init.cpp
+  void bInitToFEN(const char *);
+
+  //test_safe.cpp
+  void TestSafety();
+  void TestSafety(int Color, unsigned long long int SafeSquares);
+
+  //print.cpp
+  //void LogPrintBoard();
+  void PrintBoard();
+  void PrintSmallBoard();
+  void PrintReset();
+  void PrintMoveHistory(int Ply);
+
+  //safe.cpp
+  void InitCheckFunctionRouters();
+
+  //moves.cpp
+  void InitializeMoveGeneration();
+  int NoMovesGenerated();
+  int GenerateNextMove(Reset *Target);
+  int GenerateNextCapture(Reset *Target);
+
+  //score.cpp
+  int ScoreResetMaterialOnly();
+
+  //io.cpp
+  void GetAlgebraicNotation(Reset *Parent, char Text[]);
 };
 
 
