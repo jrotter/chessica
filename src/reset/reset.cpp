@@ -1,4 +1,6 @@
-#include "chess.h"
+#include "reset.h"
+#include "constants.h"
+#include <string.h>
 
 Reset Reset::FreeResetList;
 

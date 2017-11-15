@@ -7,7 +7,7 @@
 #include "logger.h"
 #include "constants.h"
 #include "lock.h"
-#include "reset.h"
+#include "reset/reset.h"
 #include "tree.h"
 #include "score.h"
 #include "timer.h"

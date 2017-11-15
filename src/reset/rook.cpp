@@ -1,4 +1,5 @@
-#include "chess.h"
+#include "reset.h"
+#include "constants.h"
 
 //
 //PERFORMANCE PATH

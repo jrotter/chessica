@@ -1,3 +1,5 @@
+#ifndef reset_h__
+#define reset_h__
 
 class Reset {
 
@@ -236,6 +238,9 @@ public:
 
   //io.cpp
   void GetAlgebraicNotation(Reset *Parent, char Text[]);
+  int TextToSquareNumber(char Text[]);
+  int SquareNumberToText(int SquareNumber, char Text[]);
+
 };
 
-
+#endif  // reset_h__

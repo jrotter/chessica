@@ -1,4 +1,5 @@
-#include "chess.h"
+#include "reset.h"
+#include "constants.h"
 
 
 int Reset::ScoreResetMaterialOnly()
@@ -62,13 +63,3 @@ int Reset::ScoreResetMaterialOnly()
 //Knights: Outpost - pawn protected
 
 
-int ResetTree::ScoreResetNode()
-{
-  int MaterialScore;
-  long long int MoveCount = 0;
-
-  MaterialScore = ScoreResetMaterialOnly();
-  //MaterialScore = AlphaBetaCapturesOnly(MAX_SCORE,MIN_SCORE,&MoveCount);
-  //printf("MoveCount == %d\n",MoveCount);
-  return MaterialScore;
-}

@@ -1,4 +1,6 @@
-#include "chess.h"
+#include "reset.h"
+#include "constants.h"
+#include <stdio.h>
 
 void Reset::TestSafety(int Color, unsigned long long int SafeSquares)
 {
