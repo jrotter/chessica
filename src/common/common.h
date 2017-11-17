@@ -1,8 +1,8 @@
-#ifndef helpers_h__
-#define helpers_h__
+#ifndef common_h__
+#define common_h__
 
-//io_helpers.cpp
+//io_common.cpp
 extern int TextToSquareNumber(char Text[]);
 extern int SquareNumberToText(int SquareNumber, char Text[]);
 
-#endif  // helpers_h__
+#endif  // common_h__

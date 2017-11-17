@@ -8,14 +8,14 @@ MYFLAGS = -O3
 PROFILE = -g -pg
 
 #static libraries to include
-LIBS = -L../lib -lhelpers \
+LIBS = -L../lib -lcommon \
        -lreset \
        -lpthread \
        -static
 
 #header directories
 HEADERS = -I reset \
-          -I helpers
+          -I common
 
 #Directory which holds object files
 OBJDIR = ../obj
@@ -63,14 +63,16 @@ OBJFILES = $(OPENINGS) \
 
 all: $(EXECUTABLE)
 
+common:
+	$(MAKE) -C common
 reset:
 	$(MAKE) -C reset
 
-$(EXECUTABLE) : $(OBJFILES) reset
+$(EXECUTABLE) : $(OBJFILES) reset common
 
 # Dependencies for the main prog
 # Order:
-#   helpers
+#   common
 #   reset
 
 # Main Program

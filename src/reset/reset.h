@@ -1,7 +1,7 @@
 #ifndef reset_h__
 #define reset_h__
 
-#include "helpers.h"
+#include "common.h"
 #include "constants.h"
 #include <stdio.h>
 #include <stdlib.h>

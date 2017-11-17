@@ -5,11 +5,11 @@ CC = g++
 MYFLAGS = -O3 -fPIC
 
 #libraries to use
-LIBS = -L../../lib -lhelpers \
+LIBS = -L../../lib -lcommon \
        -static
 
 #header directories
-HEADERS = -I ../helpers
+HEADERS = -I ../common
 
 #flags for profiling (see hacker.doc for more information)
 PROFILE = -g -pg

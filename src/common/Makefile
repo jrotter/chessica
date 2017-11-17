@@ -15,16 +15,16 @@ PROFILE = -g -pg
 OBJDIR = ../../obj
 
 #any global include files
-GLOBAL_INCLUDE = helpers.h
+GLOBAL_INCLUDE = common.h
 
 LIBDIR = ../../lib
-LIBNAME = libhelpers.a
+LIBNAME = libcommon.a
 
 #########################################################################
 
 CFLAGS = $(MYFLAGS) $(PROFILE)
 
-OBJFILES = $(OBJDIR)/io_helpers.o  
+OBJFILES = $(OBJDIR)/io_common.o  
 
 all: $(OBJFILES) $(GLOBAL_INCLUDE)
 	ar -cvq $(LIBDIR)/$(LIBNAME) $(OBJFILES)
