@@ -1,5 +1,4 @@
 #include "reset.h"
-#include "constants.h"
 
 /* To is the location of the captured piece */
 void Reset::CaptureProcessing(unsigned long long int To)

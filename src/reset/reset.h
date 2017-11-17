@@ -1,6 +1,12 @@
 #ifndef reset_h__
 #define reset_h__
 
+#include "helpers.h"
+#include "constants.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 class Reset {
 
 /*************************************************************/
@@ -82,7 +88,6 @@ private:
   void PrintSquare(int SquareIndex, int Level);
   void PrintBoardRow(int Start, int End, int Name);
   //void LogPrintSquare(signed char PieceIndex);
-  void PrintSquareToAddress(unsigned long long int Mask, char * Addr);
 
   //moves.cpp
   int AddNextWhiteMove(Reset *Target, long long unsigned int *PieceBeingMoved);
@@ -223,6 +228,7 @@ public:
   void PrintSmallBoard();
   void PrintReset();
   void PrintMoveHistory(int Ply);
+  void PrintSquareToAddress(unsigned long long int Mask, char * Addr);
 
   //safe.cpp
   void InitCheckFunctionRouters();
@@ -238,8 +244,6 @@ public:
 
   //io.cpp
   void GetAlgebraicNotation(Reset *Parent, char Text[]);
-  int TextToSquareNumber(char Text[]);
-  int SquareNumberToText(int SquareNumber, char Text[]);
 
 };
 

@@ -8,6 +8,7 @@
 #include "constants.h"
 #include "lock.h"
 #include "reset/reset.h"
+#include "helpers/helpers.h"
 #include "tree.h"
 #include "score.h"
 #include "timer.h"
@@ -53,7 +54,7 @@ typedef int (Game::*SearchRoutineFunction)(int ThreadID);
 //
 // Cross-Process Stuff
 //
-extern Lock IOLock;
+extern Lock IOLock;	//io.cpp
 
 extern Game MyGame;	//chess.cpp
 extern Logger Log;	//logger.cpp

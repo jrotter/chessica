@@ -1,7 +1,4 @@
 #include "reset.h"
-#include "constants.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 #define CLEAR_SCREEN system("clear\n")
 #define INVERSE_TEXT "\033[7m"

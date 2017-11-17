@@ -114,6 +114,7 @@ public:
   void PrintChildren();
   void PrintBestMoveLine();
   char *PrintBestMoveLineToBuffer(char *outbuffer);
+  void PrintMoveHistory(int Ply);
 
 };
 

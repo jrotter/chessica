@@ -1,5 +1,4 @@
 #include "reset.h"
-#include "constants.h"
 
 #define NEWERWAY 1
 

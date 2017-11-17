@@ -2,14 +2,20 @@
 CC = g++
 
 #compiler flags you want to use (other than profiling)
-MYFLAGS = -O3 -lpthread
-
-#libraries to use
-LIBS = -lpthread
+MYFLAGS = -O3
 
 #flags for profiling (see hacker.doc for more information)
 PROFILE = -g -pg
-#PROFILE = 
+
+#static libraries to include
+LIBS = -L../lib -lhelpers \
+       -lreset \
+       -lpthread \
+       -static
+
+#header directories
+HEADERS = -I reset \
+          -I helpers
 
 #Directory which holds object files
 OBJDIR = ../obj
@@ -63,17 +69,20 @@ reset:
 $(EXECUTABLE) : $(OBJFILES) reset
 
 # Dependencies for the main prog
+# Order:
+#   helpers
+#   reset
 
 # Main Program
 
 $(OBJDIR)/%.o : %.cpp $(GLOBAL_INCLUDE)
-	$(CC) -c $(CFLAGS) $< -o $@
+	$(CC) $(HEADERS) -c $(CFLAGS) $< -o $@
 
 $(EXECUTABLE) : $(GLOBAL_INCLUDE)
 	$(CC) $(MYFLAGS) -o $(EXECUTABLE) $(PROFILE) $(OBJFILES) $(LIBS)
 
 clean : 
-	rm -f $(EXECUTABLE) $(OBJDIR)/*.o
+	rm -f $(EXECUTABLE) $(OBJFILES)
 
 tarball :
 	tar cf openings.tar openings

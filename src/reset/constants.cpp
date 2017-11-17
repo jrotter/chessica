@@ -1,5 +1,4 @@
-#include "chess.h"
-#include "constants.h"
+#include "reset.h"
 
 signed char Points[2][7] = { { 0,-1,-3,-3,-5,-9,-100 },
                              { 0, 1, 3, 3, 5, 9, 100 } };
