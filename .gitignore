@@ -1,5 +1,5 @@
-chessica
-*.swp
-*.swo
-*.o
-*.a
+**/chessica
+**/*.swp
+**/*.swo
+**/*.o
+**/*.a
