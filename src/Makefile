@@ -7,15 +7,16 @@ MYFLAGS = -O3
 #flags for profiling (see hacker.doc for more information)
 PROFILE = -g -pg
 
+LIBDIR = ../lib
+
 #static libraries to include
-LIBS = -L../lib -lcommon \
+LIBS = -L$(LIBDIR) -lcommon \
        -lreset \
-       -lpthread \
-       -static
+       -lpthread
 
 #header directories
-HEADERS = -I reset \
-          -I common
+HEADERS = -I ./reset \
+          -I ./common
 
 #Directory which holds object files
 OBJDIR = ../obj
@@ -39,17 +40,16 @@ CFLAGS = $(MYFLAGS) $(PROFILE)
 
 #OPENINGS = b_k4_kga.o
 
-OBJFILES = $(OPENINGS) \
-           $(OBJDIR)/ab.o              \
+OBJFILES = $(OBJDIR)/ab.o              \
            $(OBJDIR)/chess.o           \
            $(OBJDIR)/constants.o       \
            $(OBJDIR)/engine.o          \
            $(OBJDIR)/file.o            \
            $(OBJDIR)/game.o            \
            $(OBJDIR)/hash.o            \
-           $(OBJDIR)/logger.o          \
            $(OBJDIR)/io.o              \
            $(OBJDIR)/lock.o            \
+           $(OBJDIR)/logger.o          \
            $(OBJDIR)/movetree.o        \
            $(OBJDIR)/print.o           \
            $(OBJDIR)/score_resettree.o \
@@ -59,16 +59,10 @@ OBJFILES = $(OPENINGS) \
            $(OBJDIR)/timer.o           \
            $(OBJDIR)/tree.o            \
            $(OBJDIR)/xboard.o 
-#OBJs = $(addprefix $(OBJDIR)/$(OBJFILES)
 
 all: $(EXECUTABLE)
 
-common:
-	$(MAKE) -C common
-reset:
-	$(MAKE) -C reset
-
-$(EXECUTABLE) : $(OBJFILES) reset common
+$(EXECUTABLE) : $(OBJFILES)
 
 # Dependencies for the main prog
 # Order:
@@ -76,13 +70,21 @@ $(EXECUTABLE) : $(OBJFILES) reset common
 #   reset
 
 # Main Program
+all : $(EXECUTABLE)
 
-$(OBJDIR)/%.o : %.cpp $(GLOBAL_INCLUDE)
-	$(CC) $(HEADERS) -c $(CFLAGS) $< -o $@
-
-$(EXECUTABLE) : $(GLOBAL_INCLUDE)
+$(EXECUTABLE) : $(OBJFILES) $(GLOBAL_INCLUDE) libcommon libreset
+	$(MAKE) -C reset
 	$(CC) $(MYFLAGS) -o $(EXECUTABLE) $(PROFILE) $(OBJFILES) $(LIBS)
 
+$(OBJDIR)/%.o : %.cpp $(GLOBAL_INCLUDE) 
+	$(CC) $(HEADERS) -c $(CFLAGS) $< -o $@
+
+libcommon :
+	$(MAKE) -C common
+	
+libreset :
+	$(MAKE) -C reset
+	
 clean : 
 	rm -f $(EXECUTABLE) $(OBJFILES)
 

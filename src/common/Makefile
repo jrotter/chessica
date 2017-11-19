@@ -2,7 +2,7 @@
 CC = g++
 
 #compiler flags you want to use (other than profiling)
-MYFLAGS = -O3 -fPIC
+MYFLAGS = -O3
 
 #libraries to use
 LIBS = 
@@ -26,12 +26,15 @@ CFLAGS = $(MYFLAGS) $(PROFILE)
 
 OBJFILES = $(OBJDIR)/io_common.o  
 
-all: $(OBJFILES) $(GLOBAL_INCLUDE)
-	ar -cvq $(LIBDIR)/$(LIBNAME) $(OBJFILES)
+$(LIBDIR)/$(LIBNAME) : $(GLOBAL_INCLUDE) $(OBJFILES)
+	@echo '****'
+	@echo '**** Making Common library'
+	@echo '****'
+	rm -f $(LIBDIR)/$(LIBNAME) && ar -cvq $(LIBDIR)/$(LIBNAME) $(OBJFILES)
 
 $(OBJDIR)/%.o : %.cpp $(GLOBAL_INCLUDE)
 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean : 
-	rm -f $(OBJFILES)
+	rm -f $(OBJFILES) $(LIBDIR)/$(LIBNAME)
 

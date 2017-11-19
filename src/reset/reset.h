@@ -83,7 +83,10 @@ protected:
 /*************************************************************/
 private:
 
-  static Reset FreeResetList;	/* FreeList declaration */
+  //Class Setup
+  static Reset FreeResetList;	// FreeList declaration
+  static bool KingStarsInitialized;
+  static bool AllAttacksInitialized;
 
   void PrintSquare(int SquareIndex, int Level);
   void PrintBoardRow(int Start, int End, int Name);
@@ -139,7 +142,9 @@ private:
   //capture.cpp
   void CaptureProcessing(unsigned long long int To);
 
-  //safe.cpp
+  //safe_reset.cpp
+  void InitKingStars();
+  void InitAllAttacks();
   int BlackIsSafe(unsigned long long int Squares);
   int WhiteIsSafe(unsigned long long int Squares);
 
@@ -205,7 +210,7 @@ private:
 public:
 
   //reset.cpp
-  Reset();
+  Reset();  //constructor
   void Free();
   void InitMyChild(Reset *Child);
   int GameNotOver();

@@ -3,9 +3,17 @@
 Reset Reset::FreeResetList;
 
 
-Reset::Reset()		//constructor
+Reset::Reset()  //constructor
 {
-  
+  //Class Setup
+  if (!KingStarsInitialized) {
+    InitKingStars();
+    KingStarsInitialized = true;
+  }
+  if (!AllAttacksInitialized) {
+    InitAllAttacks();
+    AllAttacksInitialized = true;
+  }
 }
 
 

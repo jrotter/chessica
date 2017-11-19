@@ -5,4 +5,5 @@
 extern int TextToSquareNumber(char Text[]);
 extern int SquareNumberToText(int SquareNumber, char Text[]);
 
+
 #endif  // common_h__

@@ -15,8 +15,6 @@
 
 #define CALL_MEMBER_FUNCTION(object,memberfunction) ((object).*(memberfunction))
 
-unsigned long long int KingStars[64];
-unsigned long long int AllAttacks[64];
 typedef int (Reset::*ISSAFEMETHOD) (void);
 ISSAFEMETHOD WhiteIsSafeFromRevealedCheck[64][64]; //[King][Square]
 ISSAFEMETHOD BlackIsSafeFromRevealedCheck[64][64]; //[King][Square]
@@ -26,6 +24,107 @@ signed char WhiteIsSafeFromRevealedCheckIndex[64][64];
 signed char BlackIsSafeFromRevealedCheckIndex[64][64];
 signed char WhiteIsSafeFromDirectCheckIndex[64][64];
 signed char BlackIsSafeFromDirectCheckIndex[64][64];
+
+bool Reset::KingStarsInitialized = false;
+bool Reset::AllAttacksInitialized = false;
+unsigned long long int KingStars[64];
+unsigned long long int AllAttacks[64];
+
+//declared as bool so we can execute it as an assignment to a static
+//class variable, thus executing it only once when the first Reset
+//is declared
+void Reset::InitKingStars()
+{
+  int i,j;
+  unsigned long long int BitMask = 0x8000000000000000;
+  unsigned long long int j_Bit, Temp;
+printf("Running InitKingStars\n");  
+  for (j=0;j<64;j++)
+  {
+    j_Bit = BitMask >> j;
+    KingStars[j] = 0x0 | j_Bit;
+    
+    /* Bishop or Queen */
+    Temp = j_Bit;
+    while(Temp & ULEDGE)
+    {
+      Temp = (Temp & ULEDGE) >> 7;
+      KingStars[j] |= Temp;
+    }
+    Temp = j_Bit;
+    while(Temp & UREDGE)
+    {
+      Temp = (Temp & UREDGE) >> 9;
+      KingStars[j] |= Temp;
+    }
+    Temp = j_Bit;
+    while(Temp & DLEDGE)
+    {
+      Temp = (Temp & DLEDGE) << 9;
+      KingStars[j] |= Temp;
+    }
+    Temp = j_Bit;
+    while(Temp & DREDGE)
+    {
+      Temp = (Temp & DREDGE) << 7;
+      KingStars[j] |= Temp;
+    }
+  
+    /* Rook or Queen */
+    Temp = j_Bit;
+    while(Temp & CANMOVEUP)
+    {
+      Temp = (Temp & CANMOVEUP) >> 8;
+      KingStars[j] |= Temp;
+    }
+    Temp = j_Bit;
+    while(Temp & CANMOVEDOWN)
+    {
+      Temp = (Temp & CANMOVEDOWN) << 8;
+      KingStars[j] |= Temp;
+    }
+    Temp = j_Bit;
+    while(Temp & CANMOVERIGHT)
+    {
+      Temp = (Temp & CANMOVERIGHT) >> 1;
+      KingStars[j] |= Temp;
+    }
+    Temp = j_Bit;
+    while(Temp & CANMOVELEFT)
+    {
+      Temp = (Temp & CANMOVELEFT) << 1;
+      KingStars[j] |= Temp;
+    }
+  }
+}
+
+
+//declared as bool so we can execute it as an assignment to a static
+//class variable, thus executing it only once when the first Reset
+//is declared
+void Reset::InitAllAttacks()
+{
+  int i,j;
+  unsigned long long int BitMask = 0x8000000000000000;
+  unsigned long long int j_Bit, Temp;
+  
+  for (j=0;j<64;j++)
+  {
+    AllAttacks[j] = KingStars[j];
+
+    j_Bit = BitMask >> j;
+
+    AllAttacks[j] |= ((j_Bit & K0100) >> 17);
+    AllAttacks[j] |= ((j_Bit & K0200) >> 10);
+    AllAttacks[j] |= ((j_Bit & K0400) << 6);
+    AllAttacks[j] |= ((j_Bit & K0500) << 15);
+    AllAttacks[j] |= ((j_Bit & K0700) << 17);
+    AllAttacks[j] |= ((j_Bit & K0800) << 10);
+    AllAttacks[j] |= ((j_Bit & K1000) >> 6);
+    AllAttacks[j] |= ((j_Bit & K1100) >> 15);
+  }
+}
+
 
 void Reset::InitCheckFunctionRouters()
 {
@@ -233,96 +332,6 @@ void Reset::InitCheckFunctionRouters()
       WhiteIsSafeFromDirectCheckIndex[i][i+15] = LOOKKNIGHT;
       BlackIsSafeFromDirectCheckIndex[i][i+15] = LOOKKNIGHT;
     }
-  }
-}
-
-
-void InitKingStars()
-{
-  int i,j;
-  unsigned long long int BitMask = 0x8000000000000000;
-  unsigned long long int j_Bit, Temp;
-  
-  for (j=0;j<64;j++)
-  {
-    j_Bit = BitMask >> j;
-    KingStars[j] = 0x0 | j_Bit;
-    
-    /* Bishop or Queen */
-    Temp = j_Bit;
-    while(Temp & ULEDGE)
-    {
-      Temp = (Temp & ULEDGE) >> 7;
-      KingStars[j] |= Temp;
-    }
-    Temp = j_Bit;
-    while(Temp & UREDGE)
-    {
-      Temp = (Temp & UREDGE) >> 9;
-      KingStars[j] |= Temp;
-    }
-    Temp = j_Bit;
-    while(Temp & DLEDGE)
-    {
-      Temp = (Temp & DLEDGE) << 9;
-      KingStars[j] |= Temp;
-    }
-    Temp = j_Bit;
-    while(Temp & DREDGE)
-    {
-      Temp = (Temp & DREDGE) << 7;
-      KingStars[j] |= Temp;
-    }
-  
-    /* Rook or Queen */
-    Temp = j_Bit;
-    while(Temp & CANMOVEUP)
-    {
-      Temp = (Temp & CANMOVEUP) >> 8;
-      KingStars[j] |= Temp;
-    }
-    Temp = j_Bit;
-    while(Temp & CANMOVEDOWN)
-    {
-      Temp = (Temp & CANMOVEDOWN) << 8;
-      KingStars[j] |= Temp;
-    }
-    Temp = j_Bit;
-    while(Temp & CANMOVERIGHT)
-    {
-      Temp = (Temp & CANMOVERIGHT) >> 1;
-      KingStars[j] |= Temp;
-    }
-    Temp = j_Bit;
-    while(Temp & CANMOVELEFT)
-    {
-      Temp = (Temp & CANMOVELEFT) << 1;
-      KingStars[j] |= Temp;
-    }
-  }
-}
-
-
-void InitAllAttacks()
-{
-  int i,j;
-  unsigned long long int BitMask = 0x8000000000000000;
-  unsigned long long int j_Bit, Temp;
-  
-  for (j=0;j<64;j++)
-  {
-    AllAttacks[j] = KingStars[j];
-
-    j_Bit = BitMask >> j;
-
-    AllAttacks[j] |= ((j_Bit & K0100) >> 17);
-    AllAttacks[j] |= ((j_Bit & K0200) >> 10);
-    AllAttacks[j] |= ((j_Bit & K0400) << 6);
-    AllAttacks[j] |= ((j_Bit & K0500) << 15);
-    AllAttacks[j] |= ((j_Bit & K0700) << 17);
-    AllAttacks[j] |= ((j_Bit & K0800) << 10);
-    AllAttacks[j] |= ((j_Bit & K1000) >> 6);
-    AllAttacks[j] |= ((j_Bit & K1100) >> 15);
   }
 }
 

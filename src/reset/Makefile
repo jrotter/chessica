@@ -2,11 +2,7 @@
 CC = g++
 
 #compiler flags you want to use (other than profiling)
-MYFLAGS = -O3 -fPIC
-
-#libraries to use
-LIBS = -L../../lib -lcommon \
-       -static
+MYFLAGS = -O3
 
 #header directories
 HEADERS = -I ../common
@@ -41,16 +37,20 @@ OBJFILES = $(OPENINGS) \
            $(OBJDIR)/queen.o       \
            $(OBJDIR)/reset.o       \
            $(OBJDIR)/rook.o        \
-           $(OBJDIR)/safe.o        \
+           $(OBJDIR)/safe_reset.o  \
            $(OBJDIR)/score.o       \
            $(OBJDIR)/test_safe.o 
 
-all: $(OBJFILES) $(GLOBAL_INCLUDE)
-	ar -cvq $(LIBDIR)/$(LIBNAME) $(OBJFILES)
+$(LIBDIR)/$(LIBNAME) : $(GLOBAL_INCLUDE) $(OBJFILES)
+	@echo '****'
+	@echo '**** Making Reset library'
+	@echo '****'
+	rm -f $(LIBDIR)/$(LIBNAME) && ar -cvq $(LIBDIR)/$(LIBNAME) $(OBJFILES)
 
 $(OBJDIR)/%.o : %.cpp $(GLOBAL_INCLUDE)
 	$(CC) $(HEADERS) -c $(CFLAGS) $< -o $@
 
 clean : 
+	rm -f $(LIBDIR)/$(LIBNAME)
 	rm -f $(OBJFILES)
 

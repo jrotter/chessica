@@ -73,10 +73,6 @@ extern void ReleaseIOSerialization();
 /* print.cpp */
 extern void ClearScreen();
 
-// safe.cpp
-extern void InitKingStars();
-extern void InitAllAttacks();
-
 /* test_main.cpp */
 extern int TestMoves();
 

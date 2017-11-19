@@ -3,3 +3,4 @@ chessica
 *.swo
 *.o
 *.a
+gmon.out
