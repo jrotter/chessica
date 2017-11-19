@@ -85,8 +85,7 @@ private:
 
   //Class Setup
   static Reset FreeResetList;	// FreeList declaration
-  static bool KingStarsInitialized;
-  static bool AllAttacksInitialized;
+  static bool Initialized;      // True if one-time initialization is complete 
 
   void PrintSquare(int SquareIndex, int Level);
   void PrintBoardRow(int Start, int End, int Name);

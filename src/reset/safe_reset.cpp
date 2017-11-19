@@ -25,8 +25,7 @@ signed char BlackIsSafeFromRevealedCheckIndex[64][64];
 signed char WhiteIsSafeFromDirectCheckIndex[64][64];
 signed char BlackIsSafeFromDirectCheckIndex[64][64];
 
-bool Reset::KingStarsInitialized = false;
-bool Reset::AllAttacksInitialized = false;
+bool Reset::Initialized = false;
 unsigned long long int KingStars[64];
 unsigned long long int AllAttacks[64];
 
@@ -38,7 +37,7 @@ void Reset::InitKingStars()
   int i,j;
   unsigned long long int BitMask = 0x8000000000000000;
   unsigned long long int j_Bit, Temp;
-printf("Running InitKingStars\n");  
+
   for (j=0;j<64;j++)
   {
     j_Bit = BitMask >> j;

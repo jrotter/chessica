@@ -6,13 +6,11 @@ Reset Reset::FreeResetList;
 Reset::Reset()  //constructor
 {
   //Class Setup
-  if (!KingStarsInitialized) {
+  if (!Initialized) {
     InitKingStars();
-    KingStarsInitialized = true;
-  }
-  if (!AllAttacksInitialized) {
     InitAllAttacks();
-    AllAttacksInitialized = true;
+    InitCheckFunctionRouters();
+    Initialized = true;
   }
 }
 

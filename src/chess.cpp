@@ -9,7 +9,6 @@ int main()
   ResetTree & Root = *new ResetTree;
   
   Log.Open();
-  Root.InitCheckFunctionRouters();
 
   Root.InitFreeList();
   //Root.bInitToFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
