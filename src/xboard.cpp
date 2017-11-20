@@ -35,6 +35,7 @@ void Game::XboardCommandInterpreter()
   ResetTree *TempBoard;
   int promotion = 0;
   int i;
+  int result;
 
   char logstring[200];
 
@@ -45,7 +46,7 @@ void Game::XboardCommandInterpreter()
 
   while (1)
   {
-    scanf("%s",args[0]);
+    result = scanf("%s",args[0]);
     sprintf(logstring,"[xboard] %s\n",args[0]);
     Log.Write(logstring);
 
@@ -60,7 +61,7 @@ void Game::XboardCommandInterpreter()
     //xboard indicating protocol version
     if (strcmp(args[0],"protover") == 0)
     {
-      scanf("%s",args[1]); //get version
+      result = scanf("%s",args[1]); //get version
       //printf("# protover=%s\n",args[1]);
       //if (strcmp(args[1],"4") == 0)
       //{
@@ -138,7 +139,7 @@ void Game::XboardCommandInterpreter()
       mybuffer[0] = '\0';
       for (i=0;i<6;i++)
       {
-        scanf("%s",args[0]);
+        result = scanf("%s",args[0]);
         sprintf(logstring,"[xboard] %s\n",args[0]);
         Log.Write(logstring);
         strcat(mybuffer,args[0]);

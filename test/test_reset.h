@@ -1,5 +1,5 @@
-#ifndef testchess_h__
-#define testchess_h__
+#ifndef test_reset_h__
+#define test_reset_h__
 
 #include <iostream>
 #include <cppunit/TestFixture.h>
@@ -25,7 +25,7 @@ public:
   static CppUnit::Test *suite() {
     CppUnit::TestSuite *suiteOfTests = new CppUnit::TestSuite("TestReset");
  
-    suiteOfTests->addTest(new CppUnit::TestCaller<TestReset>("Test1 - Something.", &TestReset::testReset_test1 ));
+    suiteOfTests->addTest(new CppUnit::TestCaller<TestReset>("White Opening Moves", &TestReset::testReset_WhiteOpeningMoves ));
  
     suiteOfTests->addTest(new CppUnit::TestCaller<TestReset>("Test2 - Something Else.", &TestReset::testReset_test2 ));
  
@@ -40,9 +40,9 @@ public:
   void tearDown();
  
 protected:
-  void testReset_test1();
+  void testReset_WhiteOpeningMoves();
   void testReset_test2();
 
 };
 
-#endif  //testchess_h__
+#endif  //test_reset_h__

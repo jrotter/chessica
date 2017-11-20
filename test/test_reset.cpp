@@ -9,15 +9,52 @@ void TestReset::setUp() {
 void TestReset::tearDown() {
 }
 
-void TestReset::testReset_test1() {
-  Reset x;
-  Reset y;
-
+void TestReset::testReset_WhiteOpeningMoves() {
+  Reset x, y, z;
+  int found;
   x.bInitToFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
-  x.GenerateNextMove(&y);
-  x.PrintBoard();
-  double a = 2, b = 8, e = 16, c = 4, d = -8, f = 2; // 2x + 8y = 16; 4x -8y = 2
-  CPPUNIT_ASSERT( a==b );
+
+  found = x.GenerateSingleMove(&y,"a2","a3");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"a2","a4");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"b2","b3");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"b2","b4");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"c2","c3");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"c2","c4");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"d2","d3");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"d2","d4");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"e2","e3");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"e2","e4");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"f2","f3");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"f2","f4");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"g2","g3");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"g2","g4");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"h2","h3");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"h2","h4");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"b1","a3");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"b1","c3");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"g1","f3");
+  CPPUNIT_ASSERT(found);
+  found = x.GenerateSingleMove(&y,"g1","h3");
+  CPPUNIT_ASSERT(found);
+
 }
  
 void TestReset::testReset_test2() {

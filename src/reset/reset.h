@@ -255,6 +255,10 @@ public:
   //io.cpp
   void GetAlgebraicNotation(Reset *Parent, char Text[]);
 
+  //test_reset_helpers.cpp
+  int MatchesToFrom(const char *CompareFrom, const char *CompareTo); 
+  int GenerateSingleMove(Reset *Child, const char *MoveFrom, const char *MoveTo);
+
 };
 
 #endif  // reset_h__

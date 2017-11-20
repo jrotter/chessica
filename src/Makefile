@@ -30,7 +30,6 @@ GLOBAL_INCLUDE = chess.h     \
                  game.h      \
                  hash.h      \
                  logger.h    \
-                 score.h     \
                  timer.h     \
                  tree.h
 
