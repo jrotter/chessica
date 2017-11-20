@@ -1,6 +1,7 @@
 #include "reset.h"
 
 
+
 int Reset::ScoreResetMaterialOnly()
 {
   Reset TempChild, TempParent;

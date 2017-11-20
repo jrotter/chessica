@@ -60,7 +60,6 @@ extern Game MyGame;	//chess.cpp
 extern Logger Log;	//logger.cpp
 extern FILE *logfile;
 extern int HashMultiples[64];
-extern signed char Points[2][7];	//score.cpp
 extern ResetTree * FreeList[MAX_THREADS];	//tree.cpp
 extern ResetTree * MoveHistory[200];		//tree.cpp
 

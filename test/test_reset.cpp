@@ -3,11 +3,6 @@
 
 // Setup method
 void TestReset::setUp() {
-  Reset & r = *new Reset;
-  Reset & s = *new Reset;
-
-  printf("Ran setup\n");
-  r.InitCheckFunctionRouters();
 }
  
 // Teardown method
@@ -15,8 +10,12 @@ void TestReset::tearDown() {
 }
 
 void TestReset::testReset_test1() {
-  Reset & x = *new Reset;
-  Reset & y = *new Reset;
+  Reset x;
+  Reset y;
+
+  x.bInitToFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
+  x.GenerateNextMove(&y);
+  x.PrintBoard();
   double a = 2, b = 8, e = 16, c = 4, d = -8, f = 2; // 2x + 8y = 16; 4x -8y = 2
   CPPUNIT_ASSERT( a==b );
 }

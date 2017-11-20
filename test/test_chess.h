@@ -8,6 +8,7 @@
 #include <cppunit/TestSuite.h>
 #include <cppunit/TestCase.h>
  
+#include "common.h"
 #include "reset.h"
  
 using namespace std;

@@ -167,7 +167,7 @@
 #define ENGINEACTION_MOVE 2
 
 // Structures
-extern signed char InitialPieceType[32];
+extern  char Points[2][7];
 extern float CheckMateScore[2];
 extern float DrawScore[2];
 

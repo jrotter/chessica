@@ -14,8 +14,9 @@ PROFILE = -g -pg
 OBJDIR = ../../obj
 
 #any global include files
-GLOBAL_INCLUDE = constants.h  \
-                 reset.h  
+GLOBAL_INCLUDE = constants_reset.h  \
+                 reset.h            \
+                 score.h
 
 LIBDIR = ../../lib
 LIBNAME = libreset.a
@@ -24,21 +25,21 @@ LIBNAME = libreset.a
 
 CFLAGS = $(MYFLAGS) $(PROFILE)
 
-OBJFILES = $(OPENINGS) \
-           $(OBJDIR)/bishop.o      \
-           $(OBJDIR)/capture.o     \
-           $(OBJDIR)/init.o        \
-           $(OBJDIR)/io_reset.o    \
-           $(OBJDIR)/king.o        \
-           $(OBJDIR)/knight.o      \
-           $(OBJDIR)/moves.o       \
-           $(OBJDIR)/pawn.o        \
-           $(OBJDIR)/print_reset.o \
-           $(OBJDIR)/queen.o       \
-           $(OBJDIR)/reset.o       \
-           $(OBJDIR)/rook.o        \
-           $(OBJDIR)/safe_reset.o  \
-           $(OBJDIR)/score.o       \
+OBJFILES = $(OBJDIR)/bishop.o           \
+           $(OBJDIR)/capture.o          \
+           $(OBJDIR)/constants_reset.o  \
+           $(OBJDIR)/init.o             \
+           $(OBJDIR)/io_reset.o         \
+           $(OBJDIR)/king.o             \
+           $(OBJDIR)/knight.o           \
+           $(OBJDIR)/moves.o            \
+           $(OBJDIR)/pawn.o             \
+           $(OBJDIR)/print_reset.o      \
+           $(OBJDIR)/queen.o            \
+           $(OBJDIR)/reset.o            \
+           $(OBJDIR)/rook.o             \
+           $(OBJDIR)/safe_reset.o       \
+           $(OBJDIR)/score.o            \
            $(OBJDIR)/test_safe.o 
 
 $(LIBDIR)/$(LIBNAME) : $(GLOBAL_INCLUDE) $(OBJFILES)

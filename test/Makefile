@@ -2,16 +2,15 @@
 CC = g++
 
 #compiler flags you want to use (other than profiling)
-MYFLAGS = -O3 -lpthread -fPIC
+MYFLAGS = -O3 -lpthread
 
 #flags for profiling (see hacker.doc for more information)
 PROFILE = -g -pg
 #PROFILE = 
 
 #static libraries to include
-LIBS = -L../lib -lreset \
-       -L/usr/lib/x86_64-linux-gnu -lcppunit -ldl \
-       -static
+LIBS = -L../lib -lreset -lcommon \
+       -L/usr/lib/x86_64-linux-gnu -lcppunit -ldl
 
 #header directories
 HEADERS = -I ../src/common \
@@ -21,7 +20,8 @@ HEADERS = -I ../src/common \
 OBJDIR = ../obj
 
 #any global include files
-GLOBAL_INCLUDE = 
+GLOBAL_INCLUDE = test_chess.h \
+                 test_reset.h
 
 #########################################################################
 

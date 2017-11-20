@@ -1,5 +1,5 @@
-#ifndef constants_h__
-#define constants_h__
+#ifndef constants_reset_h__
+#define constants_reset_h__
 
 #define TRUE 1
 #define FALSE 0
@@ -150,10 +150,9 @@
 #define ENGINEACTION_THINK 1
 #define ENGINEACTION_MOVE 2
 
-// Constant Structures (constants.cpp)
-extern signed char Points[2][7];
-extern signed char InitialPieceType[32];
+// Constant Structures (score.cpp)
+extern char Points[2][7];
 extern float CheckMateScore[2];
 extern float DrawScore[2];
 
-#endif  // constants_h__
+#endif  // constants_reset_h__

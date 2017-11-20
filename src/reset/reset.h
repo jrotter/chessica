@@ -2,7 +2,8 @@
 #define reset_h__
 
 #include "common.h"
-#include "constants.h"
+#include "constants_reset.h"
+#include "score.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -87,6 +88,11 @@ private:
   static Reset FreeResetList;	// FreeList declaration
   static bool Initialized;      // True if one-time initialization is complete 
 
+  //constants.cpp
+  //static char Points[2][7];
+  //static float DrawScore[2];
+  //static float CheckMateScore[2];
+
   void PrintSquare(int SquareIndex, int Level);
   void PrintBoardRow(int Start, int End, int Name);
   //void LogPrintSquare(signed char PieceIndex);
@@ -144,6 +150,9 @@ private:
   //safe_reset.cpp
   void InitKingStars();
   void InitAllAttacks();
+
+  void InitCheckFunctionRouters();
+
   int BlackIsSafe(unsigned long long int Squares);
   int WhiteIsSafe(unsigned long long int Squares);
 
@@ -233,9 +242,6 @@ public:
   void PrintReset();
   void PrintMoveHistory(int Ply);
   void PrintSquareToAddress(unsigned long long int Mask, char * Addr);
-
-  //safe.cpp
-  void InitCheckFunctionRouters();
 
   //moves.cpp
   void InitializeMoveGeneration();
