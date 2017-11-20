@@ -11,6 +11,7 @@ void TestReset::tearDown() {
 
 void TestReset::testReset_WhiteOpeningMoves() {
   Reset x, y, z;
+  char fen[100];
   int found;
   x.bInitToFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1");
 
@@ -34,6 +35,7 @@ void TestReset::testReset_WhiteOpeningMoves() {
   CPPUNIT_ASSERT(found);
   found = x.GenerateSingleMove(&y,"e2","e4");
   CPPUNIT_ASSERT(found);
+  y.ConvertToFEN(fen);
   found = x.GenerateSingleMove(&y,"f2","f3");
   CPPUNIT_ASSERT(found);
   found = x.GenerateSingleMove(&y,"f2","f4");

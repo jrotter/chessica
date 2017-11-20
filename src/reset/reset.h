@@ -258,6 +258,7 @@ public:
   //test_reset_helpers.cpp
   int MatchesToFrom(const char *CompareFrom, const char *CompareTo); 
   int GenerateSingleMove(Reset *Child, const char *MoveFrom, const char *MoveTo);
+  char * ConvertToFEN(char *TargetString);
 
 };
 
