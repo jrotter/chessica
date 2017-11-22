@@ -14,6 +14,8 @@ void TestReset::VerifyMoveCount(Reset *parent, int MoveCount)
   Reset child;
   int count = 0;
 
+  printf("\nEvaluating move count (expecting %d):\n",MoveCount);
+  parent->PrintSmallBoard();
   parent->InitializeMoveGeneration();
   parent->InitMyChild(&child);
   while (parent->GenerateNextMove(&child))
@@ -25,9 +27,16 @@ void TestReset::VerifySingleMove(Reset *parent, Reset *child, const char *from, 
 {
   char myfen[100];
 
+  printf("\nEvaluating move %s to %s\n",from,to);
+  printf("Parent:\n");
+  parent->PrintSmallBoard();
+  CPPUNIT_ASSERT(parent->GenerateSingleMove(child,from,to));
+  printf("Child:\n");
+  child->PrintSmallBoard();
   CPPUNIT_ASSERT(parent->GenerateSingleMove(child,from,to));
   child->ConvertToFEN(myfen);
   CPPUNIT_ASSERT(strcmp(myfen,infen) == 0);
+  printf("\n");
 }
 
 void TestReset::testReset_WhiteOpeningMoves() {
@@ -73,5 +82,38 @@ void TestReset::testReset_FischerSpassky1972_1() {
   VerifySingleMove(&y,&x,"e8","g8","rnbq1rk1/ppp2ppp/4pn2/3p4/1bPP4/2N1PN2/PP3PPP/R1BQKB1R w KQ - 0 0");
   VerifySingleMove(&x,&y,"f1","d3","rnbq1rk1/ppp2ppp/4pn2/3p4/1bPP4/2NBPN2/PP3PPP/R1BQK2R b KQ - 0 0");
   VerifySingleMove(&y,&x,"c7","c5","rnbq1rk1/pp3ppp/4pn2/2pp4/1bPP4/2NBPN2/PP3PPP/R1BQK2R w KQ c5 0 0");
+  VerifySingleMove(&x,&y,"e1","g1","rnbq1rk1/pp3ppp/4pn2/2pp4/1bPP4/2NBPN2/PP3PPP/R1BQ1RK1 b - - 0 0");
+  VerifySingleMove(&y,&x,"b8","c6","r1bq1rk1/pp3ppp/2n1pn2/2pp4/1bPP4/2NBPN2/PP3PPP/R1BQ1RK1 w - - 0 0");
+  VerifySingleMove(&x,&y,"a2","a3","r1bq1rk1/pp3ppp/2n1pn2/2pp4/1bPP4/P1NBPN2/1P3PPP/R1BQ1RK1 b - - 0 0");
+  VerifySingleMove(&y,&x,"b4","a5","r1bq1rk1/pp3ppp/2n1pn2/b1pp4/2PP4/P1NBPN2/1P3PPP/R1BQ1RK1 w - - 0 0");
+  VerifySingleMove(&x,&y,"c3","e2","r1bq1rk1/pp3ppp/2n1pn2/b1pp4/2PP4/P2BPN2/1P2NPPP/R1BQ1RK1 b - - 0 0");
+  VerifySingleMove(&y,&x,"d5","c4","r1bq1rk1/pp3ppp/2n1pn2/b1p5/2pP4/P2BPN2/1P2NPPP/R1BQ1RK1 w - - 0 0");
+  VerifySingleMove(&x,&y,"d3","c4","r1bq1rk1/pp3ppp/2n1pn2/b1p5/2BP4/P3PN2/1P2NPPP/R1BQ1RK1 b - - 0 0");
+  VerifySingleMove(&y,&x,"a5","b6","r1bq1rk1/pp3ppp/1bn1pn2/2p5/2BP4/P3PN2/1P2NPPP/R1BQ1RK1 w - - 0 0");
+  VerifySingleMove(&x,&y,"d4","c5","r1bq1rk1/pp3ppp/1bn1pn2/2P5/2B5/P3PN2/1P2NPPP/R1BQ1RK1 b - - 0 0");
+  VerifySingleMove(&y,&x,"d8","d1","r1b2rk1/pp3ppp/1bn1pn2/2P5/2B5/P3PN2/1P2NPPP/R1Bq1RK1 w - - 0 0");
+  VerifySingleMove(&x,&y,"f1","d1","r1b2rk1/pp3ppp/1bn1pn2/2P5/2B5/P3PN2/1P2NPPP/R1BR2K1 b - - 0 0");
+  VerifySingleMove(&y,&x,"b6","c5","r1b2rk1/pp3ppp/2n1pn2/2b5/2B5/P3PN2/1P2NPPP/R1BR2K1 w - - 0 0");
+  VerifySingleMove(&x,&y,"b2","b4","r1b2rk1/pp3ppp/2n1pn2/2b5/1PB5/P3PN2/4NPPP/R1BR2K1 b - b4 0 0");
+  VerifySingleMove(&y,&x,"c5","e7","r1b2rk1/pp2bppp/2n1pn2/8/1PB5/P3PN2/4NPPP/R1BR2K1 w - - 0 0");
+  VerifySingleMove(&x,&y,"c1","b2","r1b2rk1/pp2bppp/2n1pn2/8/1PB5/P3PN2/1B2NPPP/R2R2K1 b - - 0 0");
+  VerifySingleMove(&y,&x,"c8","d7","r4rk1/pp1bbppp/2n1pn2/8/1PB5/P3PN2/1B2NPPP/R2R2K1 w - - 0 0");
+  VerifySingleMove(&x,&y,"a1","c1","r4rk1/pp1bbppp/2n1pn2/8/1PB5/P3PN2/1B2NPPP/2RR2K1 b - - 0 0");
+  VerifySingleMove(&y,&x,"f8","d8","r2r2k1/pp1bbppp/2n1pn2/8/1PB5/P3PN2/1B2NPPP/2RR2K1 w - - 0 0");
+  VerifySingleMove(&x,&y,"e2","d4","r2r2k1/pp1bbppp/2n1pn2/8/1PBN4/P3PN2/1B3PPP/2RR2K1 b - - 0 0");
+  VerifySingleMove(&y,&x,"c6","d4","r2r2k1/pp1bbppp/4pn2/8/1PBn4/P3PN2/1B3PPP/2RR2K1 w - - 0 0");
+  VerifySingleMove(&x,&y,"f3","d4","r2r2k1/pp1bbppp/4pn2/8/1PBN4/P3P3/1B3PPP/2RR2K1 b - - 0 0");
+  VerifySingleMove(&y,&x,"d7","a4","r2r2k1/pp2bppp/4pn2/8/bPBN4/P3P3/1B3PPP/2RR2K1 w - - 0 0");
+  VerifySingleMove(&x,&y,"c4","b3","r2r2k1/pp2bppp/4pn2/8/bP1N4/PB2P3/1B3PPP/2RR2K1 b - - 0 0");
+  VerifySingleMove(&y,&x,"a4","b3","r2r2k1/pp2bppp/4pn2/8/1P1N4/Pb2P3/1B3PPP/2RR2K1 w - - 0 0");
+  VerifySingleMove(&x,&y,"d4","b3","r2r2k1/pp2bppp/4pn2/8/1P6/PN2P3/1B3PPP/2RR2K1 b - - 0 0");
+  VerifySingleMove(&y,&x,"d8","d1","r5k1/pp2bppp/4pn2/8/1P6/PN2P3/1B3PPP/2Rr2K1 w - - 0 0");
+  VerifySingleMove(&x,&y,"c1","d1","r5k1/pp2bppp/4pn2/8/1P6/PN2P3/1B3PPP/3R2K1 b - - 0 0");
+  VerifySingleMove(&y,&x,"a8","c8","2r3k1/pp2bppp/4pn2/8/1P6/PN2P3/1B3PPP/3R2K1 w - - 0 0");
+  VerifySingleMove(&x,&y,"g1","f1","2r3k1/pp2bppp/4pn2/8/1P6/PN2P3/1B3PPP/3R1K2 b - - 0 0");
+  VerifySingleMove(&y,&x,"g8","f8","2r2k2/pp2bppp/4pn2/8/1P6/PN2P3/1B3PPP/3R1K2 w - - 0 0");
+  VerifySingleMove(&x,&y,"f1","e2","2r2k2/pp2bppp/4pn2/8/1P6/PN2P3/1B2KPPP/3R4 b - - 0 0");
+  VerifySingleMove(&y,&x,"f6","e4","2r2k2/pp2bppp/4p3/8/1P2n3/PN2P3/1B2KPPP/3R4 w - - 0 0");
+  VerifySingleMove(&x,&y,"d1","c1","2r2k2/pp2bppp/4p3/8/1P2n3/PN2P3/1B2KPPP/2R5 b - - 0 0");
 
 }
