@@ -158,6 +158,5 @@ char * Reset::ConvertToFEN(char *TargetString)
   // Move number
   TargetString[FENindex++] = '0'; //ignore for now
   TargetString[FENindex] = '\0';
-  printf("FEN: %s\n",TargetString);
 }
 

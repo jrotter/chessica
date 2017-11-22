@@ -27,7 +27,7 @@ public:
  
     suiteOfTests->addTest(new CppUnit::TestCaller<TestReset>("White Opening Moves", &TestReset::testReset_WhiteOpeningMoves ));
  
-    suiteOfTests->addTest(new CppUnit::TestCaller<TestReset>("Test2 - Something Else.", &TestReset::testReset_test2 ));
+    suiteOfTests->addTest(new CppUnit::TestCaller<TestReset>("Fischer-Spassky, 1972 World Championship Game 1", &TestReset::testReset_FischerSpassky1972_1 ));
  
     return suiteOfTests;
   }
@@ -40,8 +40,13 @@ public:
   void tearDown();
  
 protected:
+  // Helpers
+  void VerifySingleMove(Reset *parent, Reset *child, const char *from, const char *to, const char *fen);
+  void VerifyMoveCount(Reset *parent, int MoveCount);
+
+  // Tests
   void testReset_WhiteOpeningMoves();
-  void testReset_test2();
+  void testReset_FischerSpassky1972_1();
 
 };
 
