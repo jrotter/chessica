@@ -1,5 +1,4 @@
-#include "chess.h"
-#include <pthread.h>
+#include "tree.h"
 
 ResetTree * MoveHistory[200] = {(ResetTree *) 0}; //Only works for zero
 ResetTree * ResetTree::FreeList[MAX_THREADS] = {(ResetTree *) 0}; //Only works for zero
@@ -443,16 +442,16 @@ void ResetTree::TreeDiagnostics()
   {
     if (DepthCount[i] > 0)
     {
-      printf("Depth = %d, Nodes = %d\n",i,DepthCount[i]);
+      printf("Depth = %d, Nodes = %lld\n",i,DepthCount[i]);
     }
   }
-  printf("TOTAL = %d\n",TotalCount);
+  printf("TOTAL = %lld\n",TotalCount);
   i = CountFreeList();
   printf("Nodes on Freelist: %d\n",i);
   printf("MEMORY USAGE:\n");
   printf("=============\n");
   printf("Freelist: %6.2f MB (%d nodes)\n",((float) (i) * sizeof(ResetTree)) / (1024.0 * 1024.0),i);
-  printf("Tree:     %6.2f MB (%d nodes)\n",((float) (TotalCount) * sizeof(ResetTree)) / (1024.0 * 1024.0),TotalCount);
-  printf("TOTAL:    %6.2f MB (%d nodes)\n",((float) (TotalCount + i) * sizeof(ResetTree)) / (1024.0 * 1024.0),TotalCount + i);
+  printf("Tree:     %6.2f MB (%lld nodes)\n",((float) (TotalCount) * sizeof(ResetTree)) / (1024.0 * 1024.0),TotalCount);
+  printf("TOTAL:    %6.2f MB (%lld nodes)\n",((float) (TotalCount + i) * sizeof(ResetTree)) / (1024.0 * 1024.0),TotalCount + i);
 }
 

@@ -1,3 +1,6 @@
+#ifndef logger_h__
+#define logger_h__
+
 #include <iostream>
 using namespace std;	// Needed for calling cout, endl, etc.
 
@@ -27,4 +30,4 @@ public:
   void Close();
 };
 
-  
+#endif  // logger_h__ 

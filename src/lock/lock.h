@@ -1,3 +1,9 @@
+#ifndef lock_h__
+#define lock_h__
+
+#include <pthread.h>
+
+
 
 class Lock {
 
@@ -33,4 +39,8 @@ public:
   
 };
 
+
+extern Lock IOLock;	//io.cpp
+
+#endif  // lock_h__
 

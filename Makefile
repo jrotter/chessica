@@ -14,4 +14,8 @@ chessica:
 test:
 	$(MAKE) -C test
 
-
+clean:
+	$(MAKE) -C src/common clean
+	$(MAKE) -C src/reset clean
+	$(MAKE) -C src clean
+	$(MAKE) -C test clean

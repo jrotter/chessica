@@ -115,5 +115,29 @@ void TestReset::testReset_FischerSpassky1972_1() {
   VerifySingleMove(&x,&y,"f1","e2","2r2k2/pp2bppp/4pn2/8/1P6/PN2P3/1B2KPPP/3R4 b - - 0 0");
   VerifySingleMove(&y,&x,"f6","e4","2r2k2/pp2bppp/4p3/8/1P2n3/PN2P3/1B2KPPP/3R4 w - - 0 0");
   VerifySingleMove(&x,&y,"d1","c1","2r2k2/pp2bppp/4p3/8/1P2n3/PN2P3/1B2KPPP/2R5 b - - 0 0");
+  VerifySingleMove(&y,&x,"c8","c1","5k2/pp2bppp/4p3/8/1P2n3/PN2P3/1B2KPPP/2r5 w - - 0 0");
+  VerifySingleMove(&x,&y,"b2","c1","5k2/pp2bppp/4p3/8/1P2n3/PN2P3/4KPPP/2B5 b - - 0 0");
+  VerifySingleMove(&y,&x,"f7","f6","5k2/pp2b1pp/4pp2/8/1P2n3/PN2P3/4KPPP/2B5 w - - 0 0");
+  VerifySingleMove(&x,&y,"b3","a5","5k2/pp2b1pp/4pp2/N7/1P2n3/P3P3/4KPPP/2B5 b - - 0 0");
+  VerifySingleMove(&y,&x,"e4","d6","5k2/pp2b1pp/3npp2/N7/1P6/P3P3/4KPPP/2B5 w - - 0 0");
+  VerifySingleMove(&x,&y,"e2","d3","5k2/pp2b1pp/3npp2/N7/1P6/P2KP3/5PPP/2B5 b - - 0 0");
+  VerifySingleMove(&y,&x,"e7","d8","3b1k2/pp4pp/3npp2/N7/1P6/P2KP3/5PPP/2B5 w - - 0 0");
+  VerifySingleMove(&x,&y,"a5","c4","3b1k2/pp4pp/3npp2/8/1PN5/P2KP3/5PPP/2B5 b - - 0 0");
+  VerifySingleMove(&y,&x,"d8","c7","5k2/ppb3pp/3npp2/8/1PN5/P2KP3/5PPP/2B5 w - - 0 0");
+  VerifySingleMove(&x,&y,"c4","d6","5k2/ppb3pp/3Npp2/8/1P6/P2KP3/5PPP/2B5 b - - 0 0");
+  VerifySingleMove(&y,&x,"c7","d6","5k2/pp4pp/3bpp2/8/1P6/P2KP3/5PPP/2B5 w - - 0 0");
+  VerifySingleMove(&x,&y,"b4","b5","5k2/pp4pp/3bpp2/1P6/8/P2KP3/5PPP/2B5 b - - 0 0");
+  VerifySingleMove(&y,&x,"d6","h2","5k2/pp4pp/4pp2/1P6/8/P2KP3/5PPb/2B5 w - - 0 0");
+  VerifySingleMove(&x,&y,"g2","g3","5k2/pp4pp/4pp2/1P6/8/P2KP1P1/5P1b/2B5 b - - 0 0");
+  VerifySingleMove(&y,&x,"h7","h5","5k2/pp4p1/4pp2/1P5p/8/P2KP1P1/5P1b/2B5 w - h5 0 0");
+  VerifySingleMove(&x,&y,"d3","e2","5k2/pp4p1/4pp2/1P5p/8/P3P1P1/4KP1b/2B5 b - - 0 0");
+  VerifySingleMove(&y,&x,"h5","h4","5k2/pp4p1/4pp2/1P6/7p/P3P1P1/4KP1b/2B5 w - - 0 0");
+  VerifySingleMove(&x,&y,"e2","f3","5k2/pp4p1/4pp2/1P6/7p/P3PKP1/5P1b/2B5 b - - 0 0");
+  VerifySingleMove(&y,&x,"f8","e7","8/pp2k1p1/4pp2/1P6/7p/P3PKP1/5P1b/2B5 w - - 0 0");
+  VerifySingleMove(&x,&y,"f3","g2","8/pp2k1p1/4pp2/1P6/7p/P3P1P1/5PKb/2B5 b - - 0 0");
+  VerifySingleMove(&y,&x,"h4","g3","8/pp2k1p1/4pp2/1P6/8/P3P1p1/5PKb/2B5 w - - 0 0");
+  VerifySingleMove(&x,&y,"f2","g3","8/pp2k1p1/4pp2/1P6/8/P3P1P1/6Kb/2B5 b - - 0 0");
+  VerifySingleMove(&y,&x,"h2","g3","8/pp2k1p1/4pp2/1P6/8/P3P1b1/6K1/2B5 w - - 0 0");
+  VerifySingleMove(&x,&y,"g2","g3","8/pp2k1p1/4pp2/1P6/8/P3P1K1/8/2B5 b - - 0 0");
 
 }

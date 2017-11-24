@@ -1,4 +1,4 @@
-#include "chess.h"
+#include "tree.h"
 
 
 int ResetTree::SerialAlphaBeta(int Depth, int Ply, int Min, int Max, long long int *NodeCount)
@@ -55,17 +55,6 @@ int ResetTree::SerialAlphaBeta(int Depth, int Ply, int Min, int Max, long long i
       else
         return(Min);
     }
-  }
-}
-
-
-int Game::SerialAlphaBeta(int ThreadID)
-{
-  //Serial
-  if (ThreadID == 0)
-  {
-    printf("serial ab\n");
-    SearchScore[Ply] = CurrentBoard->SerialAlphaBeta(ABParmlist.Depth,0,MAX_SCORE,MIN_SCORE,&(MoveCount[Ply]));
   }
 }
 
@@ -162,16 +151,6 @@ int ResetTree::IterativeAlphaBeta(int PrimeDepth, int Depth, long long int *Move
   DeleteTree(RUNS_SERIALLY);
 
   return(retval);
-}
-
-
-int Game::IterativeAlphaBeta(int ThreadID)
-{
-  //Serial
-  if (ThreadID == 0)
-  {
-    SearchScore[Ply] = CurrentBoard->IterativeAlphaBeta(ABParmlist.PrimeDepth,ABParmlist.Depth,&(MoveCount[Ply]));
-  }
 }
 
 
@@ -395,16 +374,6 @@ int ResetTree::IterativeAlphaBetaInPlace(int Depth, int MaxHold, long long int *
   return(retval);
 }
 
-
-
-int Game::IterativeAlphaBetaInPlace(int ThreadID)
-{
-  //Serial
-  if (ThreadID == 0)
-  {
-    SearchScore[Ply] = CurrentBoard->IterativeAlphaBetaInPlace(ABParmlist.Depth,ABParmlist.MaxHold,&(MoveCount[Ply]));
-  }
-}
 
 
 

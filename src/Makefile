@@ -9,13 +9,18 @@ PROFILE = -g -pg
 
 LIBDIR = ../lib
 
-#static libraries to include
-LIBS = -L$(LIBDIR) -lcommon \
+#static libraries to include (reverse dependency order)
+LIBS = -L $(LIBDIR) \
+       -ltree \
        -lreset \
+       -llock \
+       -lcommon \
        -lpthread
 
 #header directories
-HEADERS = -I ./reset \
+HEADERS = -I ./tree \
+          -I ./reset \
+          -I ./lock \
           -I ./common
 
 #Directory which holds object files
@@ -30,8 +35,7 @@ GLOBAL_INCLUDE = chess.h     \
                  game.h      \
                  hash.h      \
                  logger.h    \
-                 timer.h     \
-                 tree.h
+                 timer.h     
 
 #########################################################################
 
@@ -46,17 +50,10 @@ OBJFILES = $(OBJDIR)/ab.o              \
            $(OBJDIR)/file.o            \
            $(OBJDIR)/game.o            \
            $(OBJDIR)/hash.o            \
-           $(OBJDIR)/io.o              \
-           $(OBJDIR)/lock.o            \
            $(OBJDIR)/logger.o          \
-           $(OBJDIR)/movetree.o        \
-           $(OBJDIR)/print.o           \
-           $(OBJDIR)/score_resettree.o \
            $(OBJDIR)/search.o          \
-           $(OBJDIR)/test_ab.o         \
            $(OBJDIR)/test_main.o       \
            $(OBJDIR)/timer.o           \
-           $(OBJDIR)/tree.o            \
            $(OBJDIR)/xboard.o 
 
 all: $(EXECUTABLE)
@@ -71,9 +68,8 @@ $(EXECUTABLE) : $(OBJFILES)
 # Main Program
 all : $(EXECUTABLE)
 
-$(EXECUTABLE) : $(OBJFILES) $(GLOBAL_INCLUDE) libcommon libreset
-	$(MAKE) -C reset
-	$(CC) $(MYFLAGS) -o $(EXECUTABLE) $(PROFILE) $(OBJFILES) $(LIBS)
+$(EXECUTABLE) : $(GLOBAL_INCLUDE) libcommon liblock libreset libtree $(OBJFILES)
+	$(CC) $(MYFLAGS) $(PROFILE) -o $(EXECUTABLE) $(OBJFILES) $(LIBS)
 
 $(OBJDIR)/%.o : %.cpp $(GLOBAL_INCLUDE) 
 	$(CC) $(HEADERS) -c $(CFLAGS) $< -o $@
@@ -81,10 +77,20 @@ $(OBJDIR)/%.o : %.cpp $(GLOBAL_INCLUDE)
 libcommon :
 	$(MAKE) -C common
 	
+liblock :
+	$(MAKE) -C lock
+	
 libreset :
 	$(MAKE) -C reset
 	
+libtree :
+	$(MAKE) -C tree
+	
 clean : 
+	$(MAKE) -C common clean
+	$(MAKE) -C lock clean
+	$(MAKE) -C reset clean
+	$(MAKE) -C tree clean
 	rm -f $(EXECUTABLE) $(OBJFILES)
 
 tarball :

@@ -1,4 +1,4 @@
-#include "chess.h"
+#include "tree.h"
 
 
 void ResetTree::PrintChildren()

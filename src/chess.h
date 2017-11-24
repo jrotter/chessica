@@ -1,3 +1,6 @@
+#ifndef chess_h__
+#define chess_h__
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,8 +10,8 @@
 #include "logger.h"
 #include "constants.h"
 #include "lock.h"
-#include "common/common.h"
-#include "reset/reset.h"
+#include "common.h"
+#include "reset.h"
 #include "tree.h"
 #include "score.h"
 #include "timer.h"
@@ -20,15 +23,6 @@
 #define PIECEISBLACK(b) (b < NumWhitePieces ? 0 : 1)
 
 using namespace std;
-
-struct MoveTreeParms {
-  ResetTree *myTree;
-  int inDepth;
-  int inPly;
-  long long int *inNodeCount;
-  int ThreadID;
-  int *Retvalue;
-};
 
 typedef struct ABParmStruct {
   int Depth;
@@ -64,8 +58,8 @@ extern ResetTree * FreeList[MAX_THREADS];	//tree.cpp
 extern ResetTree * MoveHistory[200];		//tree.cpp
 
 /* io.cpp */
-extern int TextToSquareNumber(char Text[]);
-extern int SquareNumberToText(int SquareNumber, char Text[]);
+//extern int TextToSquareNumber(char Text[]);
+//extern int SquareNumberToText(int SquareNumber, char Text[]);
 extern void ObtainIOSerialization();
 extern void ReleaseIOSerialization();
 
@@ -81,3 +75,6 @@ extern ResetTree *MoveHistory[];
 /* xboard.cpp */
 void InitIO();
 void XboardCommandInterpreter();
+
+#endif  //chess_h__
+

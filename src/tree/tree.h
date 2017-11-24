@@ -1,5 +1,18 @@
+#ifndef tree_h__
+#define tree_h__
+
+
+#include "common.h"
+#include "lock.h"
+#include "reset.h"
 #include <iostream>
+#include <stdio.h>
 #include <pthread.h>
+#include <unistd.h>
+
+#define MAX_SCORE 125000000
+#define MIN_SCORE -125000000
+
 using namespace std;	// Needed for calling cout, endl, etc.
 
 class ResetTree : public Reset
@@ -119,3 +132,16 @@ public:
 };
 
   
+struct MoveTreeParms {
+  ResetTree *myTree;
+  int inDepth;
+  int inPly;
+  long long int *inNodeCount;
+  int ThreadID;
+  int *Retvalue;
+};
+
+extern ResetTree * MoveHistory[];
+
+#endif  // tree_h__
+

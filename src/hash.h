@@ -1,3 +1,5 @@
+#ifndef hash_h__
+#define hash_h__
 
 extern int HashMultiples[64];
 
@@ -66,3 +68,4 @@ public:
   }
 };
 
+#endif  // hash_h__

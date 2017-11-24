@@ -1,41 +1,6 @@
 #ifndef constants_reset_h__
 #define constants_reset_h__
 
-#define TRUE 1
-#define FALSE 0
-#define ON 1
-#define OFF 0
-#define WHITE 1
-#define BLACK 0
-#define EMPTY -1
-
-#define UP 0
-#define DOWN 1
-#define LEFT 2
-#define RIGHT 3
-
-#define UP_LEFT 0
-#define UP_RIGHT 1
-#define DOWN_LEFT 2
-#define DOWN_RIGHT 3
-
-
-/* Define the piece types */
-#define NONE 0
-#define PAWN 1
-#define KNIGHT 2
-#define BISHOP 3
-#define ROOK 4
-#define QUEEN 5
-#define KING 6
-
-//Thread-related constants
-#define SEARCH_THREADS 8
-#define IO_THREAD 9
-#define ENGINE_THREAD 10
-#define RUNS_SERIALLY 0
-#define MAX_THREADS SEARCH_THREADS+2
-
 /* Large prime number for hash value generation 
  *     This is the smallest prime greater than 100 million.  I didn't want
  * to go much higher than this, because signed ints can only go up to about

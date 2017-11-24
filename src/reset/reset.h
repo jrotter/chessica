@@ -8,6 +8,81 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define NULLRESET (Reset *) 0
+
+/* Define the piece types */
+#define NONE 0
+#define PAWN 1
+#define KNIGHT 2
+#define BISHOP 3
+#define ROOK 4
+#define QUEEN 5
+#define KING 6
+
+// Constants for board searching
+#define NOTRANK1 0x00ffffffffffffff
+#define RANK1 0xff00000000000000
+#define RANK2 0x00ff000000000000
+#define RANK3 0x0000ff0000000000
+#define RANK4 0x000000ff00000000
+#define RANK5 0x00000000ff000000
+#define RANK6 0x0000000000ff0000
+#define RANK7 0x000000000000ff00
+#define RANK8 0x00000000000000ff
+#define NOTRANK1 0x00ffffffffffffff
+#define NOTRANK2 0xff00ffffffffffff
+#define NOTRANK3 0xffff00ffffffffff
+#define NOTRANK4 0xffffff00ffffffff
+#define NOTRANK5 0xffffffff00ffffff
+#define NOTRANK6 0xffffffffff00ffff
+#define NOTRANK7 0xffffffffffff00ff
+#define NOTRANK8 0xffffffffffffff00
+#define FILE1 0x8080808080808080
+#define FILE2 0x4040404040404040
+#define FILE3 0x2020202020202020
+#define FILE4 0x1010101010101010
+#define FILE5 0x0808080808080808
+#define FILE6 0x0404040404040404
+#define FILE7 0x0202020202020202
+#define FILE8 0x0101010101010101
+#define NOTFILE1 0x7f7f7f7f7f7f7f7f
+#define NOTFILE2 0xbfbfbfbfbfbfbfbf
+#define NOTFILE3 0xdfdfdfdfdfdfdfdf
+#define NOTFILE4 0xefefefefefefefef
+#define NOTFILE5 0xf7f7f7f7f7f7f7f7
+#define NOTFILE6 0xfbfbfbfbfbfbfbfb
+#define NOTFILE7 0xfdfdfdfdfdfdfdfd
+#define NOTFILE8 0xfefefefefefefefe
+#define CANMOVEUP    0xffffffffffffff00
+#define CANMOVEDOWN  0x00ffffffffffffff
+#define CANMOVELEFT  0x7f7f7f7f7f7f7f7f
+#define CANMOVERIGHT 0xfefefefefefefefe
+#define UREDGE 0xfefefefefefefe00
+#define ULEDGE 0x7f7f7f7f7f7f7f00
+#define DREDGE 0x00fefefefefefefe
+#define DLEDGE 0x007f7f7f7f7f7f7f
+#define K0100 0xfefefefefefe0000
+#define K0200 0xfcfcfcfcfcfcfc00
+#define K0400 0x00fcfcfcfcfcfcfc
+#define K0500 0x0000fefefefefefe
+#define K0700 0x00007f7f7f7f7f7f
+#define K0800 0x003f3f3f3f3f3f3f
+#define K1000 0x3f3f3f3f3f3f3f00
+#define K1100 0x7f7f7f7f7f7f0000
+#define ULCORNER 0x0000000000000080
+#define URCORNER 0x0000000000000001
+#define LLCORNER 0x8000000000000000
+#define LRCORNER 0x0100000000000000
+
+#define WCASTLEKSAFE 0x0e00000000000000
+#define WCASTLEQSAFE 0x3800000000000000
+#define BCASTLEKSAFE 0x000000000000000e
+#define BCASTLEQSAFE 0x0000000000000038
+#define WCASTLEKEMPTY 0x0600000000000000
+#define WCASTLEQEMPTY 0x7000000000000000
+#define BCASTLEKEMPTY 0x0000000000000006
+#define BCASTLEQEMPTY 0x0000000000000070
+
 class Reset {
 
 /*************************************************************/

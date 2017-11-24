@@ -1,4 +1,7 @@
-#include "chess.h"
+#include "lock.h"
+
+Lock IOLock;
+
 
 Lock::Lock()		//constructor
 {
@@ -15,3 +18,4 @@ void Lock::Release()
 {
   pthread_mutex_unlock(&MyLock);
 }
+

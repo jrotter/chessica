@@ -1,3 +1,6 @@
+#ifndef game_h__
+#define game_h__
+
 #include <iostream>
 #include <pthread.h>
 using namespace std;	// Needed for calling cout, endl, etc.
@@ -136,4 +139,4 @@ public:
   int VerifyHighEndMoveScore(int ply, int ExpectedScore, long long int TotalMoves, int ExpectedTime);
 };
 
-  
+#endif  // game_h__
