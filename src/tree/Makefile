@@ -13,7 +13,7 @@ HEADERS = -I ../common \
 PROFILE = -g -pg
 
 #Directory which holds object files
-OBJDIR = ../../obj
+OBJDIR = ./obj
 
 #any global include files
 GLOBAL_INCLUDE = tree.h 
@@ -27,8 +27,8 @@ CFLAGS = $(MYFLAGS) $(PROFILE)
 
 OBJFILES = $(OBJDIR)/ab_tree.o         \
            $(OBJDIR)/movetree.o        \
-           $(OBJDIR)/print_tree.o      \
-           $(OBJDIR)/score_resettree.o \
+           $(OBJDIR)/print.o           \
+           $(OBJDIR)/score.o           \
            $(OBJDIR)/test_ab.o         \
            $(OBJDIR)/tree.o
 
@@ -43,5 +43,5 @@ $(OBJDIR)/%.o : %.cpp $(GLOBAL_INCLUDE)
 
 clean : 
 	rm -f $(LIBDIR)/$(LIBNAME)
-	rm -f $(OBJFILES)
+	rm -f $(OBJDIR)/*
 

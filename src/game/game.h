@@ -3,6 +3,20 @@
 
 #include <iostream>
 #include <pthread.h>
+#include "common.h"
+#include "logger.h"
+#include "lock.h"
+#include "reset.h"
+#include "tree.h"
+
+// Constants
+#define ENGINEACTION_WAIT 0
+#define ENGINEACTION_THINK 1
+#define ENGINEACTION_MOVE 2
+
+#define COMPUTER_PLAYER 0  
+#define HUMAN_PLAYER 1
+
 using namespace std;	// Needed for calling cout, endl, etc.
 
 class Game {
@@ -138,5 +152,7 @@ public:
   int VerifyMoveScore(int ply, int ExpectedScore, long long int TotalMoves, int ExpectedTime);
   int VerifyHighEndMoveScore(int ply, int ExpectedScore, long long int TotalMoves, int ExpectedTime);
 };
+
+extern Game MyGame;	//chess.cpp
 
 #endif  // game_h__

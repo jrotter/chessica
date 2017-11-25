@@ -12,7 +12,7 @@ PROFILE = -g -pg
 #PROFILE = 
 
 #Directory which holds object files
-OBJDIR = ../../obj
+OBJDIR = ./obj
 
 #any global include files
 GLOBAL_INCLUDE = lock.h
@@ -36,5 +36,5 @@ $(OBJDIR)/%.o : %.cpp $(GLOBAL_INCLUDE)
 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean : 
-	rm -f $(OBJFILES) $(LIBDIR)/$(LIBNAME)
+	rm -f $(OBJDIR)/* $(LIBDIR)/$(LIBNAME)
 

@@ -4,10 +4,6 @@
 //#define DEBUG_MODE
 //#define PROFILING_MODE
 
-//These go in the game object
-#define COMPUTER_PLAYER 0  
-#define HUMAN_PLAYER 1
-
 //Hash Table
 #define ONE_MB 1048576
 
@@ -64,10 +60,6 @@
 
 /* Number of seconds between polls to see if we're done studying */
 #define TIME_BETWEEN_STUDYING_POLLS 10
-
-#define ENGINEACTION_WAIT 0
-#define ENGINEACTION_THINK 1
-#define ENGINEACTION_MOVE 2
 
 // Structures
 extern  char Points[2][7];

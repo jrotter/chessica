@@ -50,7 +50,6 @@ typedef int (Game::*SearchRoutineFunction)(int ThreadID);
 //
 extern Lock IOLock;	//io.cpp
 
-extern Game MyGame;	//chess.cpp
 extern Logger Log;	//logger.cpp
 extern FILE *logfile;
 extern int HashMultiples[64];

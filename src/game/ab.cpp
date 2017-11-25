@@ -1,4 +1,4 @@
-#include "chess.h"
+#include "game.h"
 
 
 int Game::IterativeAlphaBetaSaveBest(int ThreadID)

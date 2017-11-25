@@ -1,7 +1,6 @@
 #include "chess.h"
 
 Game MyGame;
-Logger Log;
 
 int main()
 {

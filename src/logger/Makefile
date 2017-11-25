@@ -15,16 +15,16 @@ PROFILE = -g -pg
 OBJDIR = ./obj
 
 #any global include files
-GLOBAL_INCLUDE = common.h
+GLOBAL_INCLUDE = logger.h
 
 LIBDIR = ../../lib
-LIBNAME = libcommon.a
+LIBNAME = liblogger.a
 
 #########################################################################
 
 CFLAGS = $(MYFLAGS) $(PROFILE)
 
-OBJFILES = $(OBJDIR)/io.o  
+OBJFILES = $(OBJDIR)/logger.o
 
 $(LIBDIR)/$(LIBNAME) : $(GLOBAL_INCLUDE) $(OBJFILES)
 	@echo '****'

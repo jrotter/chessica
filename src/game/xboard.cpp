@@ -1,4 +1,4 @@
-#include "chess.h"
+#include "game.h"
 #include <signal.h>
 
 void Game::InitIO()

@@ -2,6 +2,9 @@
 #define logger_h__
 
 #include <iostream>
+#include <stdio.h>
+#include <string.h>
+
 using namespace std;	// Needed for calling cout, endl, etc.
 
 class Logger {
@@ -29,5 +32,7 @@ public:
   void Write(const char *);
   void Close();
 };
+
+extern Logger Log;	//logger.cpp
 
 #endif  // logger_h__ 

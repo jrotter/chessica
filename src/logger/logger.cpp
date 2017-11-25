@@ -1,4 +1,4 @@
-#include "chess.h"
+#include "logger.h"
 
 void Logger::Open()
 {
@@ -22,4 +22,6 @@ void Logger::Close()
 {
   fclose(logfile);
 }
+
+Logger Log;
 

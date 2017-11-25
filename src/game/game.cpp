@@ -1,4 +1,4 @@
-#include "chess.h"
+#include "game.h"
 #include <pthread.h>
 
 Game::Game()	//constructor

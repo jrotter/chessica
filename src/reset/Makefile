@@ -11,7 +11,7 @@ HEADERS = -I ../common
 PROFILE = -g -pg
 
 #Directory which holds object files
-OBJDIR = ../../obj
+OBJDIR = ./obj
 
 #any global include files
 GLOBAL_INCLUDE = constants_reset.h  \
@@ -27,18 +27,18 @@ CFLAGS = $(MYFLAGS) $(PROFILE)
 
 OBJFILES = $(OBJDIR)/bishop.o              \
            $(OBJDIR)/capture.o             \
-           $(OBJDIR)/constants_reset.o     \
+           $(OBJDIR)/constants.o           \
            $(OBJDIR)/init.o                \
            $(OBJDIR)/io_reset.o            \
            $(OBJDIR)/king.o                \
            $(OBJDIR)/knight.o              \
            $(OBJDIR)/moves.o               \
            $(OBJDIR)/pawn.o                \
-           $(OBJDIR)/print_reset.o         \
+           $(OBJDIR)/print.o               \
            $(OBJDIR)/queen.o               \
            $(OBJDIR)/reset.o               \
            $(OBJDIR)/rook.o                \
-           $(OBJDIR)/safe_reset.o          \
+           $(OBJDIR)/safe.o                \
            $(OBJDIR)/score.o               \
            $(OBJDIR)/test_reset_helpers.o  \
            $(OBJDIR)/test_safe.o 
@@ -54,5 +54,5 @@ $(OBJDIR)/%.o : %.cpp $(GLOBAL_INCLUDE)
 
 clean : 
 	rm -f $(LIBDIR)/$(LIBNAME)
-	rm -f $(OBJFILES)
+	rm -f $(OBJDIR)/*
 
