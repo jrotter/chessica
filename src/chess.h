@@ -18,10 +18,6 @@
 #include "hash.h"
 #include "game.h"
 
-#define PIECECOLOR(b) (b < NumWhitePieces ? WHITE : BLACK)
-#define PIECEISWHITE(b) (b < NumWhitePieces ? 1 : 0)
-#define PIECEISBLACK(b) (b < NumWhitePieces ? 0 : 1)
-
 using namespace std;
 
 typedef struct ABParmStruct {
