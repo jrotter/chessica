@@ -4,3 +4,5 @@ chessica
 *.o
 *.a
 gmon.out
+html
+latex
