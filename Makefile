@@ -19,3 +19,6 @@ clean:
 	$(MAKE) -C src/reset clean
 	$(MAKE) -C src clean
 	$(MAKE) -C test clean
+
+doc:
+	doxygen doxygen.cfg
