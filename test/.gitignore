@@ -1,8 +1,6 @@
 chessica
+test_chess
 *.swp
 *.swo
 *.o
 *.a
-gmon.out
-html
-latex
