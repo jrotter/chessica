@@ -15,3 +15,10 @@ sudo apt-get install -y libcppunit-dev
 sudo apt-get install -y libcppunit-doc
 ```
 
+To build documentation, Doxygen is required:
+
+```sh
+sudo apt-get install -y doxygen
+sudo apt install -y graphviz
+```
+
