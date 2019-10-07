@@ -2,6 +2,10 @@
 
 Game MyGame;
 
+/// The main Chessica method
+///
+/// Initializes the Chessica environment and starts the XBoard command interpreter
+///
 int main()
 {
   char temp;
