@@ -1,10 +1,17 @@
 #include "reset.h"
 
 
-
-//
-//PERFORMANCE PATH
-//
+/// Once a move for white has been deemed possible, populate the child Reset
+/// appropriately and return `TRUE` if it's legal or `FALSE` if it is not.
+///
+/// @note This method is on the performance path.
+///
+/// @param[in,out] MyChild The address of the child Reset
+/// @param[in,out] PieceBeingMoved The address of the bit string representing 
+/// the piece type being moved (e.g. `bKnights`)
+///
+/// @returns int An integer representing whether this is a valid move (1) or not (0).
+///
 int Reset::AddNextWhiteMove(Reset *MyChild, unsigned long long int *PieceBeingMoved)
 {
   MyChild->bFrom = bCurrentPiece;
@@ -45,9 +52,17 @@ int Reset::AddNextWhiteMove(Reset *MyChild, unsigned long long int *PieceBeingMo
 }
 
 
-//
-//PERFORMANCE PATH
-//
+/// Once a move for black has been deemed possible, populate the child Reset
+/// appropriately and return `TRUE` if it's legal or `FALSE` if it is not.
+///
+/// @note This method is on the performance path.
+///
+/// @param[in,out] MyChild The address of the child Reset
+/// @param[in,out] PieceBeingMoved The address of the bit string representing 
+/// the piece type being moved (e.g. `bKnights`)
+///
+/// @returns int An integer representing whether this is a valid move (1) or not (0).
+///
 int Reset::AddNextBlackMove(Reset *MyChild, unsigned long long int *PieceBeingMoved)
 {
   MyChild->bFrom = bCurrentPiece;
