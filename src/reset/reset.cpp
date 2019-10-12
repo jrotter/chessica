@@ -3,6 +3,18 @@
 Reset Reset::FreeResetList;
 
 
+/// Constructor for the Reset class
+///
+/// When the first Reset is built, Initialization is performed on Reset-related
+/// structures, including those for measuring safety:
+/// - Reset::InitKingStars, which initializes the mapping of straight-line 
+/// attack routes to a king on any square of the board
+/// - Reset::InitAllAttacks, which is KingStars with knights added 
+/// - Reset::InitCheckFunctionRouters, which initializes methods to determine 
+/// where to look for check given where a piece moved from and where it moved to
+///
+/// @returns Reset - a Reset instance
+///
 Reset::Reset()  //constructor
 {
   //Class Setup
@@ -15,9 +27,12 @@ Reset::Reset()  //constructor
 }
 
 
-//
-//PERFORMANCE PATH
-//
+/// Initialize a child Reset for this Reset instance
+///
+/// @note This method is on the performance path.
+///
+/// @param[in,out] *Child The address of the child Reset
+///
 void Reset::InitMyChild(Reset * Child)
 {
   int i;
@@ -65,6 +80,12 @@ void Reset::InitMyChild(Reset * Child)
 }
 
 
+/// Given a Reset, is the game over?
+///
+/// @note This method is on the performance path.
+///
+/// @returns TRUE if the game is over and FALSE otherwise.
+///
 int Reset::GameNotOver()
 {
   if (GameOver)
@@ -74,9 +95,14 @@ int Reset::GameNotOver()
 }
 
 
-//
-//PERFORMANCE PATH
-//
+/// Given a Reset, does its hash match mine?
+///
+/// @note This method is used with hashing, which is not currently enabled.
+///
+/// @param Candidate - The Reset to compare with me
+///
+/// @returns TRUE if the hashes match and FALSE otherwise.
+///
 int Reset::FullHashesMatch(Reset *Candidate)
 {
   if (bAll == Candidate->bAll)
@@ -87,9 +113,14 @@ int Reset::FullHashesMatch(Reset *Candidate)
 
 
 
-//
-//PERFORMANCE PATH
-//
+/// Given a Reset that is a child of my parent, does it represent the same move that I do?
+///
+/// @note This method is on the performance path.
+///
+/// @param Candidate - The Reset to compare with me
+///
+/// @returns TRUE if the Resets match and FALSE otherwise.
+///
 int Reset::ChildrenMatch(Reset *Candidate)
 {
   //
@@ -114,6 +145,12 @@ int Reset::ChildrenMatch(Reset *Candidate)
 
 
 
+/// Given a Reset, does it represent the same move that I do?
+///
+/// @param Candidate - The Reset to compare with me
+///
+/// @returns TRUE if the Resets match and FALSE otherwise.
+///
 int Reset::ResetMatches(Reset *Candidate)
 {
   if (bAll != Candidate->bAll)
@@ -142,6 +179,9 @@ int Reset::ResetMatches(Reset *Candidate)
   return TRUE;
 }
 
+/// \todo 
+/// Instead of initializing my child each time, consider initializing a 
+/// template child and then copying the first 80+32 bytes to initialize each subsequent child
 
 //
 //PERFORMANCE PATH
