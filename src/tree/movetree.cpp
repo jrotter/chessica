@@ -2,6 +2,11 @@
 
 
 
+/// Generate a full move tree
+///
+/// @param[in] Depth The depth to which the move tree should be built
+/// @param[in] ThreadID I have no idea what this does.  Must find out.
+///
 void ResetTree::GenerateMoves(int Depth, int ThreadID)
 {
   ResetTree *MyChild;
@@ -27,6 +32,14 @@ void ResetTree::GenerateMoves(int Depth, int ThreadID)
 
 
 
+/// Generate a full move tree
+///
+/// @param[in] Depth - The depth to which the move tree should be built.
+/// @param[in] Ply - Current ply into the tree.  Always start with 0.
+/// @param[in] NodeCount - Number of nodes traversed in this search
+///
+/// @returns Best score found through search tree
+///
 int ResetTree::SerialMoveTree(int Depth, int Ply, long long int *NodeCount)
 {
   ResetTree *MyChild, *CurrentNode;
