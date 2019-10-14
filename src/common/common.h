@@ -18,6 +18,9 @@
 #define RUNS_SERIALLY 0
 #define MAX_THREADS SEARCH_THREADS+2
 
+//FreeList-related constants
+#define RESETTREE_POPULATE_BATCH_SIZE 100
+
 //io_common.cpp
 extern int TextToSquareNumber(char Text[]);
 extern int SquareNumberToText(int SquareNumber, char Text[]);

@@ -17,6 +17,10 @@ ResetTree::ResetTree()	//constructor
 }
 
 
+/// Initialize the list of free ResetTree nodes
+///
+/// To simplify serialization, there is one FreeList for each running thread
+///
 void ResetTree::InitFreeList()
 {
   int i;
@@ -27,11 +31,16 @@ void ResetTree::InitFreeList()
 }
 
 
+/// Allocate a set of ResetTree nodes and add them to the FreeList for a 
+/// specified thread
+///
+/// @param [in] ThreadID - The ID of the thread that will use this FreeList
+///
 void ResetTree::PopulateFreeList(int ThreadID)
 {
   int i;
 
-  for (i=0;i<100;i++)
+  for (i=0;i<RESETTREE_POPULATE_BATCH_SIZE;i++)
   {
     ResetTree & NewNode = *new ResetTree;
     NewNode.DeleteMe(ThreadID);
@@ -39,6 +48,10 @@ void ResetTree::PopulateFreeList(int ThreadID)
 }
 
 
+/// Return an integer count of all ResetTree nodes on all FreeLists
+///
+/// @returns count of all ResetTree nodes on all FreeLists
+///
 int ResetTree::CountFreeList()
 {
   int i;
