@@ -7,13 +7,6 @@
 //Hash Table
 #define ONE_MB 1048576
 
-//Thread-related constants
-#define SEARCH_THREADS 8
-#define IO_THREAD 9
-#define ENGINE_THREAD 10
-#define RUNS_SERIALLY 0
-#define MAX_THREADS SEARCH_THREADS+2
-
 /* Large prime number for hash value generation 
  *     This is the smallest prime greater than 100 million.  I didn't want
  * to go much higher than this, because signed ints can only go up to about
