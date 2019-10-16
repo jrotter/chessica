@@ -5,6 +5,7 @@
 #include "common.h"
 #include "lock.h"
 #include "reset.h"
+#include "timer.h"
 #include <iostream>
 #include <stdio.h>
 #include <pthread.h>
