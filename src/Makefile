@@ -16,6 +16,7 @@ LIBS = -L $(LIBDIR) \
        -lreset \
        -llock \
        -llogger \
+       -ltimer \
        -lcommon \
        -lpthread
 
@@ -25,6 +26,7 @@ HEADERS = -I ./game \
           -I ./reset \
           -I ./lock \
           -I ./logger \
+          -I ./timer \
           -I ./common
 
 #Directory which holds object files
@@ -36,8 +38,7 @@ EXECUTABLE = chessica
 #any global include files
 GLOBAL_INCLUDE = chess.h     \
                  constants.h \
-                 hash.h      \
-                 timer.h     
+                 hash.h
 
 #########################################################################
 
@@ -49,8 +50,7 @@ OBJFILES = $(OBJDIR)/chess.o           \
            $(OBJDIR)/constants.o       \
            $(OBJDIR)/file.o            \
            $(OBJDIR)/hash.o            \
-           $(OBJDIR)/test_main.o       \
-           $(OBJDIR)/timer.o           
+           $(OBJDIR)/test_main.o
 
 all: $(EXECUTABLE)
 
@@ -64,7 +64,7 @@ $(EXECUTABLE) : $(OBJFILES)
 # Main Program
 all : $(EXECUTABLE)
 
-$(EXECUTABLE) : $(GLOBAL_INCLUDE) libcommon liblock liblogger libreset libtree libgame $(OBJFILES)
+$(EXECUTABLE) : $(GLOBAL_INCLUDE) libcommon libtimer liblock liblogger libreset libtree libgame $(OBJFILES)
 	$(CC) $(MYFLAGS) $(PROFILE) -o $(EXECUTABLE) $(OBJFILES) $(LIBS)
 
 $(OBJDIR)/%.o : %.cpp $(GLOBAL_INCLUDE) 
@@ -72,6 +72,9 @@ $(OBJDIR)/%.o : %.cpp $(GLOBAL_INCLUDE)
 
 libcommon :
 	$(MAKE) -C common
+	
+libtimer :
+	$(MAKE) -C timer
 	
 liblock :
 	$(MAKE) -C lock

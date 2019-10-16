@@ -348,11 +348,12 @@ int ResetTree::IterativeAlphaBetaLeaveNodesSaveBest(int Depth, int LeaveDepth, i
   int retval;
   ResetTree *printptr;
   char mybuffer[20];
+  Timer t;
 
   CeaseProcessing = 0;
 
   //printf("This == %x\n",this);
-  for (i=1;i<=Depth;i++)
+  for (i=2;i<=Depth;i+=2)
   {
     if (!CeaseProcessing)
     {
@@ -361,7 +362,7 @@ int ResetTree::IterativeAlphaBetaLeaveNodesSaveBest(int Depth, int LeaveDepth, i
       if (ShowThinking)
       {
         IOLock.Obtain();
-        printf("%d %d 0 %lld ",i,retval/10,*MoveCount);
+        printf("%d %d %d %lld ",i,retval/10,(int) t.ElapsedTime()/10000,*MoveCount);
         printptr = Children.First;
         while (printptr)
         {
@@ -386,6 +387,7 @@ int ResetTree::ParallelIterativeAlphaBetaLeaveNodesSaveBest(int Depth, int Leave
   int retval;
   ResetTree *printptr;
   char mybuffer[20];
+  Timer t;
 
   CeaseProcessing = 0;
 
@@ -404,7 +406,7 @@ int ResetTree::ParallelIterativeAlphaBetaLeaveNodesSaveBest(int Depth, int Leave
         {
           //Find and print best score
           IOLock.Obtain();
-          printf("%d %d 0 %lld ",i,retval / 10,*MoveCount);
+          printf("%d %d %d %lld ",i,retval/10,(int) t.ElapsedTime()/10000,*MoveCount);
           printptr = Children.First;
           while (printptr)
           {

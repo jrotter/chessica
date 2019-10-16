@@ -5,10 +5,7 @@ CC = g++
 MYFLAGS = -O3
 
 #header directories
-HEADERS = -I ../common \
-          -I ../lock \
-          -I ../reset \
-		  -I ../timer
+HEADERS = 
 
 #flags for profiling (see hacker.doc for more information)
 PROFILE = -g -pg
@@ -17,25 +14,20 @@ PROFILE = -g -pg
 OBJDIR = ./obj
 
 #any global include files
-GLOBAL_INCLUDE = tree.h 
+GLOBAL_INCLUDE = timer.h 
 
 LIBDIR = ../../lib
-LIBNAME = libtree.a
+LIBNAME = libtimer.a
 
 #########################################################################
 
 CFLAGS = $(MYFLAGS) $(PROFILE)
 
-OBJFILES = $(OBJDIR)/ab_tree.o         \
-           $(OBJDIR)/movetree.o        \
-           $(OBJDIR)/print.o           \
-           $(OBJDIR)/score.o           \
-           $(OBJDIR)/test_ab.o         \
-           $(OBJDIR)/tree.o
+OBJFILES = $(OBJDIR)/timer.o
 
 $(LIBDIR)/$(LIBNAME) : $(GLOBAL_INCLUDE) $(OBJFILES)
 	@echo '****'
-	@echo '**** Making ResetTree library'
+	@echo '**** Making Timer library'
 	@echo '****'
 	rm -f $(LIBDIR)/$(LIBNAME) && ar -cvq $(LIBDIR)/$(LIBNAME) $(OBJFILES)
 
