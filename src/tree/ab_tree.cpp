@@ -18,7 +18,7 @@ int ResetTree::AlphaBetaSaveBest(int Depth, int Ply, int Min, int Max, int Threa
   MoveHistory[Ply] = this;
   if (Depth == 0)
   {
-    //PrintMoveHistory(Ply); PrintReset();
+    //PrintMyMoveLine(); PrintReset();
     (*NodeCount)++;
     return (ScoreResetNode());
   }
@@ -179,13 +179,13 @@ int ResetTree::AlphaBetaLeaveNodesSaveBest(int LeaveDepth, int Depth, int Ply, i
   ResetTree *AvoidMe = (ResetTree *) 0;
   int TempScore, BestSoFar;
 
-  if (CeaseProcessing) //This needs to return something other than zero
+  if (CeaseProcessing) /// @todo CeaseProcessing should have a special (nonzero) return value
     return (0);
 
   MoveHistory[Ply] = this;
   if (Depth == 0)
   {
-    //PrintMoveHistory(Ply); PrintReset();
+    //this->PrintMyMoveLine(); PrintReset();
     (*NodeCount)++;
     return (ScoreResetNode());
   }

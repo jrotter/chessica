@@ -126,6 +126,8 @@ public:
 
   //print.cpp
   void PrintChildren();
+  void PrintMyMoveLine();
+  char *PrintMyMoveLineToBuffer(char *outbuffer);
   void PrintBestMoveLine();
   char *PrintBestMoveLineToBuffer(char *outbuffer);
   void PrintMoveHistory(int Ply);

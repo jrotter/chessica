@@ -13,6 +13,53 @@ void ResetTree::PrintChildren()
 }
 
 
+/// Print the string of moves that led to the current ResetTree
+///
+/// Traces back through parent pointers until it reaches a NULL parent
+/// and prints the move sequence from that original parent to this move
+///
+void ResetTree::PrintMyMoveLine()
+{
+  char mybuffer[100];
+
+  printf("%s",PrintMyMoveLineToBuffer(mybuffer));
+}
+
+
+
+/// Print the string of moves that led to the current ResetTree
+///
+/// Traces back through parent pointers until it reaches a NULL parent
+/// and prints the move sequence from that original parent to this move
+///
+/// @param outbuffer - the buffer in which to store the move line
+///
+/// @returns a pointer to string representing the move line
+///
+char *ResetTree::PrintMyMoveLineToBuffer(char *outbuffer)
+{
+  char mybuffer[50][10];
+  ResetTree *printptr;
+  int x, i = 0;
+
+  *outbuffer = '\0';
+  printptr = this;
+  while (printptr && printptr->Parent)
+  {
+    printptr->GetAlgebraicNotation(printptr->Parent,mybuffer[i++]);
+    printptr = printptr->Parent;
+  }
+  for(x=(i-1); x>=0; x--)
+  {
+    strcat(outbuffer,mybuffer[x]);
+    strcat(outbuffer,"  ");
+  }
+  strcat(outbuffer,"\n");
+  printf("%s",outbuffer);
+  return(outbuffer);
+}
+
+
 void ResetTree::PrintBestMoveLine()
 {
   char mybuffer[100];
@@ -27,14 +74,16 @@ char *ResetTree::PrintBestMoveLineToBuffer(char *outbuffer)
   char mybuffer[10];
   ResetTree *printptr;
 
+  *outbuffer = '\0';
   printptr = Children.First;
   while (printptr)
   {
     printptr->GetAlgebraicNotation(printptr->Parent,mybuffer);
-    sprintf(outbuffer,"%s  ",mybuffer);
+    strcat(outbuffer,mybuffer);
+    strcat(outbuffer,"  ");
     printptr = printptr->Children.First;
   }
-  sprintf(outbuffer,"\n");
+  strcat(outbuffer,"\n");
   return(outbuffer);
 }
 
